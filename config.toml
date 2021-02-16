@@ -1,3 +1,11 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+baseURL = "https://www.muchas-glacias.com/"
+languageCode = "fr-FR"
+title = "Muchas Glacias - Testeur de site web écologique et accessible"
+theme = "frozenTacos"
+disableKinds = ["taxonomy", "taxonomyTerm"]
+[params]
+    description = "Muchas Glacias est un testeur de site web sur l'écologie et l'accessibilité.\nCe testeur est développé par LABANQUI.SE"
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

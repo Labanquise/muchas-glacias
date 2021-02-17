@@ -4,7 +4,7 @@
     <p>Dans quelques secondes, vous serez combien votre site pollue, si il est accessible et si il est performant !</p>
 
     <fieldset>
-        <input type="url" onfocus="this.value=''" value="Saisissez l'url du site à tester sous la forme http://www.monsite.fr"><button type="button" class="material-icons-outlined">search</button>
+        <input id="url2test" type="url" onfocus="this.value=''" value="Saisissez l'url du site à tester sous la forme http://www.monsite.fr"><button type="button" class="material-icons-outlined" onclick="launch(document.getElementById('url2test').value)">search</button>
     </fieldset>
 
     <div class="resultats">
@@ -15,7 +15,7 @@
             <div class="bubble b2"></div>
             <div class="bubble b3"></div>
             <div class="title">ECO<span>logie</span></div>
-            <div class="score">--<span>sur 100</span></div>
+            <div class="score"><strong>--</strong><span>sur 100</span></div>
         </div>
         <div id="res-perf" class="pill">
             <div class="level"></div>
@@ -24,7 +24,7 @@
             <div class="bubble b2"></div>
             <div class="bubble b3"></div>
             <div class="title">PERF<span>ormance</span></div>
-            <div class="score">--<span>sur 100</span></div>
+            <div class="score"><strong id="s-perf">--</strong><span>sur 100</span></div>
         </div>
         <div id="res-acc" class="pill">
             <div class="level"></div>
@@ -33,7 +33,7 @@
             <div class="bubble b2"></div>
             <div class="bubble b3"></div>
             <div class="title">ACCE<span>ssibilité</span></div>
-            <div class="score">--<span>sur 100</span></div>
+            <div class="score"><strong id="s-acc">--</strong><span>sur 100</span></div>
         </div>
         <div id="res-bp" class="pill">
             <div class="level"></div>
@@ -42,7 +42,7 @@
             <div class="bubble b2"></div>
             <div class="bubble b3"></div>
             <div class="title">BEST<span>practices</span></div>
-            <div class="score">--<span>sur 100</span></div>
+            <div class="score"><strong id="s-bp">--</strong><span>sur 100</span></div>
         </div>
         <div id="res-seo" class="pill">
             <div class="level"></div>
@@ -51,7 +51,7 @@
             <div class="bubble b2"></div>
             <div class="bubble b3"></div>
             <div class="title">SEO<span>&nbsp;</span></div>
-            <div class="score">--<span>sur 100</span></div>
+            <div class="score"><strong id="s-seo">--</strong><span>sur 100</span></div>
         </div>
         <div id="res-pepper" class="bigPill">
            

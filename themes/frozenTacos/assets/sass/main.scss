@@ -36,13 +36,13 @@ footer a {text-decoration: none;color: $c_white;}
 .mg fieldset button {width: 8%;cursor: pointer;font-size: 3rem;}
 
 @keyframes slime {
-    from {height: 4.5rem;} to {height: 10.5rem;}
+    from {height: 4.5rem;} to {height: 13.5rem;}
 }
 @keyframes level {
     from {transform: rotate(-3deg);} to {transform: rotate(3deg);}
 }
 @keyframes level-up {
-    from {bottom:3.75rem;} to {bottom:9.75rem}
+    from {bottom:3.75rem;} to {bottom:12.75rem}
 }
 @keyframes b1 {
     from {bottom: 2rem} to {bottom:4rem;}
@@ -78,17 +78,12 @@ footer a {text-decoration: none;color: $c_white;}
     .slime {position: absolute;width: 7rem;height: 4.5rem;bottom: 0.25rem;background-color: $c_white;border-radius: 0 0 3.5rem 3.5rem;margin:0 auto;left:-50%;right:-50%;z-index: 1;
     }
     .level {position: absolute;width: 7.2rem;height: 2rem;bottom: 3.75rem;background-color:$c_blue;margin:0 auto;left:-50%;right:-50%;z-index: 2;
+        animation: 1s ease-in-out 0s infinite alternate level;
     }
     .bubble {position: absolute;width: 0.5rem;height: 0.5rem;background-color: $c_blue;border-radius: 1rem;bottom:2rem;right:1rem;z-index: 3;opacity: 0.5;
-        &.b1 {//animation: 2s ease-in-out 0s infinite forwards b1;
-        }
-        &.b2 {width: 1rem;height: 1rem;right: 2rem;bottom:1rem;
-            //animation: 1s ease-in-out 1.5s infinite forwards b2;
-        }
-        &.b3 {width: 0.8rem;height: 0.8rem;right: 1.8rem;bottom:2.5rem;
-            //animation: 1.8s ease-in-out 1s infinite forwards b3;
-        }
-        /*animation: 1.5s ease-in-out 0s infinite forwards bubble;*/
+        &.b1 {animation: 2s ease-in 0s infinite forwards b1;}
+        &.b2 {width: 1rem;height: 1rem;right: 2rem;bottom:1rem;animation: 1s ease-in 1.5s infinite forwards b2;}
+        &.b3 {width: 0.8rem;height: 0.8rem;right: 1.8rem;bottom:2.5rem;animation: 1.8s ease-in 1s infinite forwards b3;}
     }
     .title {position: absolute;color: $c_white;font-weight: bold;font-size: 1.75rem;z-index: 4;bottom:4.5rem;left:0.8rem;
         span {display: block;font-size: 1rem;}
@@ -98,11 +93,11 @@ footer a {text-decoration: none;color: $c_white;}
         span {display: block;font-size: 0.75rem;}
     }
 
-    &.animated {
+    /*&.animated {
         .slime {animation: 2s ease-in-out 0s 1 forwards slime;}
         .level {animation: 2s ease-in-out 0s 1 forwards level-up;}
         .title {animation: 1s ease-in-out 0s 2 alternate blur, 1s ease-in-out 0s 1 forwards mergeColor;}
-    }
+    }*/
 
     &.red {
         background-color: $c_Rred;
@@ -118,6 +113,41 @@ footer a {text-decoration: none;color: $c_white;}
     &.green {
         background-color: $c_Rgreen;
         .level, .bubble {background-color: $c_Rgreen;}
+    }
+
+    &.mixDiff {
+        .title {mix-blend-mode: difference;}
+    }
+
+    //Manage specific animation
+    &#res-ei.animated {
+        .slime {animation: 2s ease-in-out 0s 1 forwards slime-EI;}
+        .level {animation: 2s ease-in-out 0s 1 forwards level-up-EI, 1.5s ease-in-out 0s infinite alternate level;}
+        .title {animation: 1s ease-in-out 0s 2 alternate blur, 1s ease-in-out 0s 1 forwards mergeColor-EI;}
+    }
+
+    &#res-perf.animated {
+        .slime {animation: 2s ease-in-out 0s 1 forwards slime-PERF;}
+        .level {animation: 2s ease-in-out 0s 1 forwards level-up-PERF, 1.5s ease-in-out 0s infinite alternate level;}
+        .title {animation: 1s ease-in-out 0s 2 alternate blur, 1s ease-in-out 0s 1 forwards mergeColor-PERF;}
+    }
+
+    &#res-acc.animated {
+        .slime {animation: 2s ease-in-out 0s 1 forwards slime-ACC;}
+        .level {animation: 2s ease-in-out 0s 1 forwards level-up-ACC, 1.5s ease-in-out 0s infinite alternate level;}
+        .title {animation: 1s ease-in-out 0s 2 alternate blur, 1s ease-in-out 0s 1 forwards mergeColor-ACC;}
+    }
+
+    &#res-bp.animated {
+        .slime {animation: 2s ease-in-out 0s 1 forwards slime-BP;}
+        .level {animation: 2s ease-in-out 0s 1 forwards level-up-BP, 1.5s ease-in-out 0s infinite alternate level;}
+        .title {animation: 1s ease-in-out 0s 2 alternate blur, 1s ease-in-out 0s 1 forwards mergeColor-BP;}
+    }
+
+    &#res-seo.animated {
+        .slime {animation: 2s ease-in-out 0s 1 forwards slime-SEO;}
+        .level {animation: 2s ease-in-out 0s 1 forwards level-up-SEO, 1.5s ease-in-out 0s infinite alternate level;}
+        .title {animation: 1s ease-in-out 0s 2 alternate blur, 1s ease-in-out 0s 1 forwards mergeColor-SEO;}
     }
 }
 

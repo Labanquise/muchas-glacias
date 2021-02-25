@@ -35,11 +35,13 @@ async function getScores(url){
 //Calculate Pepper Index
 function getPepper(data){
     /*
-    repartition peperdindex  : 10 / 15 / 20 / 25 / 30
+    repartition peperdindex  : 15 / 15 / 20 / 20 / 30
     formule corrigée : (40A +20B + 20 C + 10 D + 10E ) / 100
     */
    let score = (40*data[0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
    let grade = getPepperGrade(score);
+
+   document.getElementById("res-pepper").classList.add("done",grade);
    console.log("Pepper Index :"+score+" et "+grade);
 }
 
@@ -56,7 +58,7 @@ function getPepperGrade(score){
         var data = map[loop];
         if(score >= data.max) return data.grade;
     }
-    return "F";
+    return "E";
 }
 
 // Validating URL
@@ -71,6 +73,7 @@ function checkURL(url)
       return true;
 }
 
+// Asking EcoIndex from MG
 async function ecoindex(url2Test){
     return await fetch('https://ecoindex.muchas-glacias.com', {
         method: 'POST',

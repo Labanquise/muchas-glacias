@@ -20,6 +20,7 @@ body {font-family: 'Poppins', Verdana, sans-serif;}
 html {background: #fff;color: $c_blue;}
 header, #content section {width: 63.75rem;margin:auto;}
 #content {min-height: calc(100vh - 18.375rem);}
+#content section {margin-bottom:5rem;}
 
 header {position: relative;height: 10.375rem;}
 header a img {padding-top:1rem;}
@@ -157,5 +158,38 @@ footer a {text-decoration: none;color: $c_white;}
     background-color: $c_yellow;
     flex-basis: 100%;
     border-radius: 3.75rem;
+    display: flex;justify-content:center;align-items:center;
+    .pepper {position: relative;
+        span {position: absolute;left:1.15rem;top:0.9rem;font-size: 3rem;font-weight: bold;color: $c_white;}
+    }
+
+    &.A {
+        svg path:first-child {fill: #90E9EB;}
+        .grade::after {content: "A";}
+    }
+    &.B {
+        svg path:first-child {fill: #8CE100;}
+        .grade::after {content: "B";}
+    }
+    &.C {
+        svg path:first-child {fill: #FCCC00;}
+        .grade::after {content: "C";}
+    }
+    &.D {
+        svg path:first-child {fill: #F67500;}
+        .grade::after {content: "D";}
+    }
+    &.E {
+        svg path:first-child {fill: #9D0000;}
+        .grade::after {content: "E";}
+    }
+
+    .index {
+        font-size: 1.25rem;font-weight: bold;line-height:1rem;padding-left:1rem;
+        span {font-size: 1rem;font-weight: normal;}
+    }
+    &.done {
+        background-color: #f0f9e2;
+    } 
 }
 

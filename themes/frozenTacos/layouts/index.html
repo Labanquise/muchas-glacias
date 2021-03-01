@@ -4,7 +4,7 @@
     <p>Dans quelques secondes, vous serez combien votre site pollue, si il est accessible et si il est performant !</p>
 
     <fieldset>
-        <input id="url2test" type="url" onfocus="this.value=''" value="Saisissez l'url du site à tester sous la forme http://www.monsite.fr"><button type="button" class="material-icons-outlined" onclick="launch(document.getElementById('url2test').value)">search</button>
+        <input id="url2test" type="url" onfocus="this.value=''" value="Saisissez l'url du site à tester sous la forme http://www.monsite.fr"><button type="button" class="material-icons-outlined" id="url2testButton" onclick="launch(document.getElementById('url2test').value)">search</button>
     </fieldset>
 
     <div class="resultats">

@@ -1,5 +1,9 @@
 var reboot = false;
 
+document.getElementById("url2test").addEventListener("keydown", function(event) {
+    if(event.key=="Enter")
+        document.getElementById("url2testButton").click();
+}, true);
 
 // Launch Pepper Index Score
 async function launch(url){

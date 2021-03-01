@@ -1,4 +1,4 @@
-baseURL = "https://www.muchas-glacias.com/"
+baseURL = "https://muchas-glacias.com/"
 languageCode = "fr-FR"
 title = "Muchas Glacias - Testeur de site web écologique et accessible"
 theme = "frozenTacos"

@@ -1,5 +1,14 @@
+var reboot = false;
+
+
 // Launch Pepper Index Score
 async function launch(url){
+    //Check if test has already been asked
+    if(!reboot)
+        reboot = true;
+    else
+        rebootData();
+
     //Create New StyleSheet
     var styleEl = document.createElement('style');
     styleEl.setAttribute("id", "animationSS");
@@ -12,6 +21,32 @@ async function launch(url){
         let data = await getScores(url);
         getPepper(data);
     }
+}
+
+// Get data set to default
+function rebootData(){
+    console.log("reboot");
+
+    //delete ss
+    document.getElementById("animationSS").remove();
+    //delete color & score
+    let elts = ['ei', 'perf', 'acc', 'bp', 'seo'];
+    let classes =  ['green', 'orange', 'red', 'mixDiff', 'animated'];
+    let grades = ['done','A','B','C','D','E'];
+
+    // EI & LH
+    elts.forEach(elt => {
+        classes.forEach(css => {
+            document.getElementById('res-'+elt).classList.remove(css);
+        });
+        document.getElementById('s-'+elt).innerHTML = "--";
+    });
+
+    // Pepper Index
+    grades.forEach(grade => {
+        document.getElementById('res-pepper').classList.remove(grade);
+    })
+    document.getElementById("s-pepper").innerHTML = "--";
 }
 
 
@@ -42,6 +77,7 @@ function getPepper(data){
    let grade = getPepperGrade(score);
 
    document.getElementById("res-pepper").classList.add("done",grade);
+   document.getElementById("s-pepper").innerHTML = score;
    console.log("Pepper Index :"+score+" et "+grade);
 }
 

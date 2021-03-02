@@ -36,6 +36,13 @@ footer a {text-decoration: none;color: $c_white;}
 .mg fieldset input[type=url] {width: 82%;}
 .mg fieldset button {width: 8%;cursor: pointer;font-size: 3rem;}
 
+.mg #waiting {margin:3.75rem auto;width: 30%;display: flex;justify-content: space-evenly;align-items: center;font-size: 1.25rem;visibility: hidden;
+    .material-icons-outlined {font-size: 2rem;animation: 1.5s linear 0s infinite normal none loading;}
+}
+@keyframes loading{
+    from {transform: rotate(0deg);} to {transform: rotate(360deg);}
+} 
+
 @keyframes slime {
     from {height: 4.5rem;} to {height: 13.5rem;}
 }

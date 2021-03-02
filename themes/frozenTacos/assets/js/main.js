@@ -22,6 +22,7 @@ async function launch(url){
     if(!checkURL(url))
         alert("Veuillez entrer une URL valide")
     else {
+        document.getElementById('waiting').style.visibility = 'visible';
         let data = await getScores(url);
         getPepper(data);
     }
@@ -83,6 +84,7 @@ function getPepper(data){
    document.getElementById("res-pepper").classList.add("done",grade);
    document.getElementById("s-pepper").innerHTML = score;
    console.log("Pepper Index :"+score+" et "+grade);
+   document.getElementById('waiting').style.visibility = 'hidden';
 }
 
 //Getting Grade depending on Score

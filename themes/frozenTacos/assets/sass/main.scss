@@ -193,3 +193,10 @@ footer a {text-decoration: none;color: $c_white;}
     } 
 }
 
+.mg .links {padding-top:2rem ;display: flex;justify-content: center;
+    span {text-decoration: underline;cursor: pointer;}
+}
+
+.content {padding-top:2rem;border-top:0.25rem dashed $c_blue;display:none;
+    img {max-width: 100%;}
+}

@@ -5,6 +5,15 @@ document.getElementById("url2test").addEventListener("keydown", function(event) 
         document.getElementById("url2testButton").click();
 }, true);
 
+function contentToggle() {
+    var x = document.getElementById("moreInfo");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
 // Launch Pepper Index Score
 async function launch(url){
     //Check if test has already been asked

@@ -18,6 +18,11 @@ async function launch(url){
     styleEl.setAttribute("id", "animationSS");
     document.head.appendChild(styleEl);
 
+    //preformating url
+    let reg = /(http:\/\/|https:\/\/)/;
+    if(!reg.test(url))
+        url = "https://"+url;
+
     //Verify if the URL is valid
     if(!checkURL(url))
         alert("Veuillez entrer une URL valide")

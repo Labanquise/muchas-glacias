@@ -71,7 +71,7 @@ function rebootData(){
     }else{
         //delete ss
         document.getElementById("animationSS").remove();
-        
+
         elts.forEach(elt => {
             classes.forEach(css => {
                 document.getElementById('res-'+elt).classList.remove(css);
@@ -92,17 +92,24 @@ function rebootData(){
 async function getScores(url){
     //Launch the different test
     console.log("calling");
-    const responses = await Promise.all([
+    
+    return await Promise.all([
         ecoindex(url),
         googleLH(url, "performance", "perf"),
         googleLH(url, "accessibility", "acc"),
         googleLH(url, "best-practices", "bp"),
         googleLH(url, "seo", "seo")
-    ]);
-    console.log(responses)
-    return responses;
-    console.log("end of call");
-
+    ])
+    .then(res => {
+        console.log('réussi');
+        console.log(res)
+        return res;
+    }, raison => {
+        console.log('Raison'+raison);
+    })
+    .catch(err => {
+        console.log("GROSSE ERROR"+err);
+    })
 }
 
 //Calculate Pepper Index
@@ -165,7 +172,8 @@ async function ecoindex(url2Test){
         return parseInt(json.Score);
     })
     .catch(err => {
-        console.log(err)
+        console.log("petite erreur"+err);
+        return(err);
     })
 }
 
@@ -176,6 +184,7 @@ async function googleLH(url, type, id)
     return await fetch(req)
         .then(response => response.json())
         .then(json => {
+            console.log("Then réussi ?");
             const lhRes = json.lighthouseResult;
             if(mobile)
                 gauge(id, parseInt(lhRes.categories[type].score*100));
@@ -183,7 +192,11 @@ async function googleLH(url, type, id)
                 testTube(id, parseInt(lhRes.categories[type].score*100));
             //specific return in the then for the promise.all
             return parseInt(lhRes.categories[type].score*100);
-        });
+        })
+        .catch(err => {
+            throw new Error("Whoops!");
+            console.log("petite erreur"+err);
+        })
 }
 
 // Seting up query for PageSpeed

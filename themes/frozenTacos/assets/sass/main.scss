@@ -76,6 +76,7 @@ footer a {text-decoration: none;color: $c_white;}
 
 
 .mg .resultats {width:45rem;margin:0 auto;display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
+.mg .resultats .progress {display: none;}
 .mg .resultats .pill {
     position: relative;
     margin-bottom: 2.5rem;

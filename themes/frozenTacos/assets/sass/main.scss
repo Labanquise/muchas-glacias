@@ -197,6 +197,9 @@ footer a {text-decoration: none;color: $c_white;}
     span {text-decoration: underline;cursor: pointer;}
 }
 
-.content {padding-top:2rem;border-top:0.25rem dashed $c_blue;display:none;
+.content {padding-top:2rem;border-top:0.25rem dashed $c_blue;
     img {max-width: 100%;}
 }
+
+/* Mobile version */
+@import 'mobile';

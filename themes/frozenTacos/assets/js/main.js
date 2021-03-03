@@ -1,5 +1,11 @@
+// Global Actions
 var reboot = false;
+var isDisplay = window.getComputedStyle(document.getElementById("res-ei")); 
+var mobile = false;
+if(isDisplay["display"] == "none")
+    mobile = true;
 
+// Listeners
 document.getElementById("url2test").addEventListener("keydown", function(event) {
     if(event.key=="Enter")
         document.getElementById("url2testButton").click();
@@ -23,9 +29,11 @@ async function launch(url){
         rebootData();
 
     //Create New StyleSheet
-    var styleEl = document.createElement('style');
-    styleEl.setAttribute("id", "animationSS");
-    document.head.appendChild(styleEl);
+    if(!mobile){
+        var styleEl = document.createElement('style');
+        styleEl.setAttribute("id", "animationSS");
+        document.head.appendChild(styleEl);
+    }
 
     //preformating url
     let reg = /(http:\/\/|https:\/\/)/;
@@ -45,22 +53,33 @@ async function launch(url){
 // Get data set to default
 function rebootData(){
     console.log("reboot");
-
-    //delete ss
-    document.getElementById("animationSS").remove();
     //delete color & score
     let elts = ['ei', 'perf', 'acc', 'bp', 'seo'];
     let classes =  ['green', 'orange', 'red', 'mixDiff', 'animated'];
     let grades = ['done','A','B','C','D','E'];
 
     // EI & LH
-    elts.forEach(elt => {
-        classes.forEach(css => {
-            document.getElementById('res-'+elt).classList.remove(css);
+    if(mobile){
+        elts.forEach(elt => {
+            classes.forEach(css => {
+                document.getElementById('resM-'+elt).classList.remove(css);
+            });
+            document.getElementById('sM-'+elt).innerHTML = "--";
+            document.getElementById("resM-"+elt).getElementsByClassName('slime')[0].style.width = "0";
+            document.getElementById("resM-"+elt).style.display = "none";
         });
-        document.getElementById('s-'+elt).innerHTML = "--";
-    });
-
+    }else{
+        //delete ss
+        document.getElementById("animationSS").remove();
+        
+        elts.forEach(elt => {
+            classes.forEach(css => {
+                document.getElementById('res-'+elt).classList.remove(css);
+            });
+            document.getElementById('s-'+elt).innerHTML = "--";
+        });
+    }
+   
     // Pepper Index
     grades.forEach(grade => {
         document.getElementById('res-pepper').classList.remove(grade);
@@ -92,13 +111,14 @@ function getPepper(data){
     repartition peperdindex  : 15 / 15 / 20 / 20 / 30
     formule corrigée : (40A +20B + 20 C + 10 D + 10E ) / 100
     */
-   let score = (40*data[0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
-   let grade = getPepperGrade(score);
+    let score = (40*data[0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
+    let grade = getPepperGrade(score);
 
-   document.getElementById("res-pepper").classList.add("done",grade);
-   document.getElementById("s-pepper").innerHTML = score;
-   console.log("Pepper Index :"+score+" et "+grade);
-   document.getElementById('waiting').style.visibility = 'hidden';
+    document.getElementById("res-pepper").classList.add("done",grade);
+    document.getElementById("s-pepper").innerHTML = score;
+    console.log("Pepper Index :"+score+" et "+grade);
+
+    document.getElementById('waiting').style.visibility = 'hidden';
 }
 
 //Getting Grade depending on Score
@@ -137,7 +157,10 @@ async function ecoindex(url2Test){
     })
     .then(response => response.json())
     .then(json => {
-        testTube("ei", parseInt(json.Score));
+        if(mobile)
+            gauge("ei", parseInt(json.Score));
+        else
+            testTube("ei", parseInt(json.Score));
         //specific return in the then for the promise.all
         return parseInt(json.Score);
     })
@@ -154,7 +177,10 @@ async function googleLH(url, type, id)
         .then(response => response.json())
         .then(json => {
             const lhRes = json.lighthouseResult;
-            testTube(id, parseInt(lhRes.categories[type].score*100));
+            if(mobile)
+                gauge(id, parseInt(lhRes.categories[type].score*100));
+            else
+                testTube(id, parseInt(lhRes.categories[type].score*100));
             //specific return in the then for the promise.all
             return parseInt(lhRes.categories[type].score*100);
         });
@@ -210,5 +236,24 @@ function testTube(id, score)
         else
         document.getElementById("res-"+id).classList.add(color,"animated");
         document.getElementById("s-"+id).innerHTML = score;
+    }
+}
+
+// Animating Mobile results
+function gauge(id, score)
+{
+    if(score === null)
+        console.log("error null");
+    else{
+        color = "";
+        if(score >= 75) {color = "green";} else
+        if(score >= 25 && score < 75) {color = "orange";} else
+        if(score >= 0 && score < 25) {color = "red";}
+
+        //Add Score + Color + Animated
+        document.getElementById("resM-"+id).classList.add(color);
+        document.getElementById("sM-"+id).innerHTML = score;
+        document.getElementById("resM-"+id).getElementsByClassName('slime')[0].style.width = score+"%";
+        document.getElementById("resM-"+id).style.display = "block";
     }
 }

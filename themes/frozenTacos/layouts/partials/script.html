@@ -1,2 +1,7 @@
+{{ if eq .Params.mp "Score" }}
+{{ $js := resources.Get "/js/score.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.Permalink }}" async></script>
+{{ else }}
 {{ $js := resources.Get "/js/main.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $js.Permalink }}" async></script>
+{{ end }}

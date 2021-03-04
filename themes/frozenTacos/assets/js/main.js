@@ -4,16 +4,23 @@ const { display } = window.getComputedStyle(document.getElementById('res-ei'));
 const mobile = display == 'none';
 
 // Listeners
-document.addEventListener('DOMContentLoaded', function() {
+if (document.readyState === 'loading') {  // Loading hasn't finished yet
+    document.addEventListener('DOMContentLoaded', keyPressed);
+} else {  // `DOMContentLoaded` has already fired
+    keyPressed();
+}
+
+//Check Enter
+function keyPressed(){
     const url2Test = document.getElementById('url2test');
     if (!!url2Test) {
-    url2Test.addEventListener('keydown', event => {
-        if(event.key === 'Enter') {
-            document.getElementById('url2testButton').dispatchEvent(new Event('click'));
-        }
-    });
-  }
-});
+        url2Test.addEventListener('keydown', event => {
+            if(event.key === 'Enter') {
+                document.getElementById('url2testButton').dispatchEvent(new Event('click'));
+            }
+        });
+    }
+}
 
 // Toggling Class
 const contentToggle = () => {
@@ -57,6 +64,10 @@ const rebootData = () => {
     document.getElementById('waiting').classList.add('unvisible');
     document.getElementById('waiting').getElementsByClassName('txt')[0].innerHTML = "Veuillez patienter...";
     document.getElementById('waiting').getElementsByClassName('material-icons-outlined')[0].innerHTML = 'refresh';
+
+    //Share reinit
+    document.getElementById('link2Share').setAttribute('href', '');
+    document.getElementById('link2Share').classList.add('hidden');
 
 
     //delete color & score
@@ -103,7 +114,8 @@ const getScores = async url => {
             googleLH(url, 'performance', 'perf'),
             googleLH(url, 'accessibility', 'acc'),
             googleLH(url, 'best-practices', 'bp'),
-            googleLH(url, 'seo', 'seo')
+            googleLH(url, 'seo', 'seo'),
+            url
         ]);
         console.log(responses)
         return responses;
@@ -136,6 +148,29 @@ const getPepper = data => {
     console.log('Pepper Index :', score, 'et', grade);
 
     document.getElementById('waiting').classList.add('unvisible');
+
+    setData(data, score, grade);
+}
+
+// Saving in BDD
+const setData = async (data, piScore, piGrade) => {
+    try {
+        const response = await fetch('https://api.muchas-glacias.com/results-logs', {
+            method: 'POST',
+            body: `{"eco-index":${data[0]}, "lighthouse-perf":${data[1]}, "lighthouse-accessibility":${data[2]}, "lighthouse-best-practices":${data[3]}, "lighthouse-seo":${data[4]}, "url":"${data[5]}", "pepper-index":"${piGrade}", "pepper-index-score":${piScore}}`
+        });
+        const { id } = await response.json();
+        showLink(id);
+    } catch (err) {
+        console.log(err)
+        throw err;
+    }
+}
+
+// Show Link to share
+const showLink = id => {
+    document.getElementById('link2Share').setAttribute('href', `/score/?id=${id}`);
+    document.getElementById('link2Share').classList.remove('hidden');
 }
 
 //Getting Grade depending on Score

@@ -1,6 +1,7 @@
 {{ define "main" }}
-<section class="results">
-    <h1>Vos résultats pour <span id="url"></span> le <span id="date"></span></h1>
+<section class="mg-score">
+    <h1>Vos résultats pour <span id="url"></span></h1> 
+    <h2>Le <span id="date"></span></h2>
 
     <div class="resultats">
         <div id="res-ei" class="progress">
@@ -55,5 +56,9 @@
             <a href="" id="link2Share" class="material-icons-outlined" title="Partager mes résultats" target="_blank">share</a>
         </div>
     </div>
+</section>
+
+<section id="moreInfo">
+    {{.Content}}
 </section>
 {{ end }}

@@ -28,8 +28,10 @@ async function getData(){
 
 // Populate data
 const populate = (res,id) => {
+
+    const date = getDate(res['datehour']);
     document.getElementById('url').innerHTML = res['url'];
-    document.getElementById('date').innerHTML = res['datehour'];
+    document.getElementById('date').innerHTML = date;
 
 
     gauge('ei',res['eco-index']);
@@ -42,6 +44,12 @@ const populate = (res,id) => {
     document.getElementById('s-pepper').innerHTML = res['pepper-index-score'];
     document.getElementById('link2Share').setAttribute('href', `/score/?id=${id}`);
 
+}
+
+const getDate = date => {
+    date = date.toString();
+    const readableDate = date.substring(6,8)+'/'+date.substring(4,6)+'/'+date.substring(0,4)+' à '+date.substring(8,10)+'H';
+    return readableDate;
 }
 
 // Animating Mobile results

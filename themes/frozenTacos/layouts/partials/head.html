@@ -1,5 +1,17 @@
 <head>
-    
+    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HC94L3CZ41"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HC94L3CZ41');
+        gtag('config', 'UA-186825112-2');
+    </script>
+    {{ end }}
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}{{ end }}</title>
@@ -14,6 +26,7 @@
     {{ end }}
   
     <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/ico/favicon.png">
     
     {{ $style := resources.Get "/sass/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
     <link rel="preload" href="{{ $style.Permalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">

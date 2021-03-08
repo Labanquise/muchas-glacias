@@ -10,7 +10,7 @@ EcoIndex est un outil communautaire, gratuit et transparent qui permet d’éval
 
 Plus la note est élevée et meilleure est la performance environnementale.
 
-*Plus de détails ici :* <a href="http://www.ecoindex.fr/quest-ce-que-ecoindex/" target="_blank" title="Explication d'EcoIndex" ref="external nofollow">http://www.ecoindex.fr/quest-ce-que-ecoindex/</a>
+*Plus de détails ici :* <a href="http://www.ecoindex.fr/quest-ce-que-ecoindex/" target="_blank" title="Explication d'EcoIndex" rel="external nofollow noreferrer">http://www.ecoindex.fr/quest-ce-que-ecoindex/</a>
 
 ## Performance 
 
@@ -26,9 +26,9 @@ Attention, cette note peut fluctuer en fonction des éléments suivants :
 -   Sites qui injectent directement du javascript dans le navigateur
 -   Présence d'un antivirus
 
-*Détails sur la pondération :* <a href="https://googlechrome.github.io/lighthouse/scorecalc/" target="_blank" title="Explication de la pondération du score de performance" ref="external nofollow">https://googlechrome.github.io/lighthouse/scorecalc/</a>
+*Détails sur la pondération :* <a href="https://googlechrome.github.io/lighthouse/scorecalc/" target="_blank" title="Explication de la pondération du score de performance" rel="external nofollow noreferrer">https://googlechrome.github.io/lighthouse/scorecalc/</a>
 
-*Détails de l'audit Performance :* <a href="https://web.dev/lighthouse-performance/" target="_blank" ref="external nofollow" title="Audit de performance">https://web.dev/lighthouse-performance/</a>
+*Détails de l'audit Performance :* <a href="https://web.dev/lighthouse-performance/" target="_blank" rel="external nofollow noreferrer" title="Audit de performance">https://web.dev/lighthouse-performance/</a>
 
 ## Accessibilité
 
@@ -38,7 +38,7 @@ La note est la somme pondérée de 41 tests automatisés identifiés dans le Web
 
 Cette note n'est pas exhaustive mais donne une première évaluation de l'accessibilité d'un site.
 
-*Détails de l'audit d'Accessibilité :* <a href="https://web.dev/lighthouse-accessibility/" target="_blank" ref="external nofollow" title="Audit d'accessibilité">https://web.dev/lighthouse-accessibility/</a>
+*Détails de l'audit d'Accessibilité :* <a href="https://web.dev/lighthouse-accessibility/" target="_blank" rel="external nofollow noreferrer" title="Audit d'accessibilité">https://web.dev/lighthouse-accessibility/</a>
 
 ## Best Practices
 
@@ -52,7 +52,7 @@ Sont évalués les critères suivants :
  - Bonnes  Pratiques pour créer une bonne expérience utilisateur
  - Eviter les technologies dépréciées
 
-*Détails de l'audit de Best Practices :* <a href="https://web.dev/lighthouse-best-practices/" target="_blank" ref="external nofollow" title="Audit de best practices">https://web.dev/lighthouse-best-practices/</a>
+*Détails de l'audit de Best Practices :* <a href="https://web.dev/lighthouse-best-practices/" target="_blank" rel="external nofollow noreferrer" title="Audit de best practices">https://web.dev/lighthouse-best-practices/</a>
 
 ## SEO - Référencement
 
@@ -60,7 +60,7 @@ Le score SEO, compris entre 0 et 100,  indique à quel point votre site Web est 
 
 Votre site Web est-il responsive et donc "mobile friendly"? La taille de la police est-elle normale ? Une distinction est-elle faite entre H1 et H2 ?
 
-*Détails de l'audit de SEO :* <a href="https://web.dev/lighthouse-seo/" target="_blank" ref="external nofollow" title="Audit du SEO">https://web.dev/lighthouse-seo/</a>
+*Détails de l'audit de SEO :* <a href="https://web.dev/lighthouse-seo/" target="_blank" rel="external nofollow noreferrer" title="Audit du SEO">https://web.dev/lighthouse-seo/</a>
 
 ## Pepper Index
 

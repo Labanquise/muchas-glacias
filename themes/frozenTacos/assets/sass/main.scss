@@ -232,10 +232,10 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
 }
 
 .links {padding-top:2rem ;display: flex;justify-content: center;
-    span {text-decoration: underline;cursor: pointer;}
+    span:nth-child(odd) {text-decoration: underline;cursor: pointer;}
 }
 
-#moreInfo {padding-top:2rem;border-top:0.25rem dashed $c_blue;
+.content {padding-top:2rem;border-top:0.25rem dashed $c_blue;
     img {max-width: 100%;}
 }
 

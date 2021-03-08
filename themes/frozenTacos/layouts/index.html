@@ -113,11 +113,16 @@
         </div>
     </div>
     <div class="links">
-        <span onclick="contentToggle()">Comprendre mes résultats</span>
+        <span onclick="contentToggle('moreInfo','whyTest')">Comprendre mes résultats</span><span>&nbsp;|&nbsp;</span><span onclick="contentToggle('whyTest','moreInfo')">Pourquoi Tester ?</span>
     </div>
 </section>
 
-<section id="moreInfo" class="hidden">
-    {{.Content}}
+{{ $cols := split .Content "|||||" }}
+<section id="moreInfo" class="content hidden">
+    {{ index $cols 0 | safe.HTML }}
+</section>
+
+<section id="whyTest" class="content hidden">
+    {{ index $cols 1 | safe.HTML }}
 </section>
 {{ end }}

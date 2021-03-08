@@ -5,7 +5,11 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
     getData();
 }
 
-
+// Toggling Class
+const contentToggle = (id, id2) => {
+    document.getElementById(id).classList.toggle('hidden');
+    document.getElementById(id2).classList.add('hidden');
+}
 
 // Saving in BDD
 async function getData(){
@@ -29,7 +33,7 @@ async function getData(){
 // Populate data
 const populate = (res,id) => {
 
-    const date = getDate(res['datehour']);
+    const date = getDate(res['datehour'], res['timestamp']);
     document.getElementById('url').innerHTML = res['url'];
     document.getElementById('date').innerHTML = date;
 
@@ -46,9 +50,10 @@ const populate = (res,id) => {
 
 }
 
-const getDate = date => {
+const getDate = (date,ts) => {
     date = date.toString();
-    const readableDate = date.substring(6,8)+'/'+date.substring(4,6)+'/'+date.substring(0,4)+' à '+date.substring(8,10)+'H';
+    const hour = new Date(ts*1000).toISOString().substr(11, 8);
+    const readableDate = date.substring(6,8)+'/'+date.substring(4,6)+'/'+date.substring(0,4)+' à '+hour;
     return readableDate;
 }
 

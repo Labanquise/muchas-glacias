@@ -24,6 +24,8 @@
     {{ else }}
         <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     {{ end }}
+
+    {{ template "_internal/opengraph.html" . }}
   
     <link rel="canonical" href="{{ .Permalink }}" />
     <link rel="icon" type="image/png" sizes="32x32" href="/ico/favicon.png">

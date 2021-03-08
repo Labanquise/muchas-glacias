@@ -23,8 +23,9 @@ function keyPressed(){
 }
 
 // Toggling Class
-const contentToggle = () => {
-    document.getElementById('moreInfo').classList.toggle('hidden');
+const contentToggle = (id, id2) => {
+    document.getElementById(id).classList.toggle('hidden');
+    document.getElementById(id2).classList.add('hidden');
 }
 
 // Launch Pepper Index Score

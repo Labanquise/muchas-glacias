@@ -1,0 +1,3 @@
+Sitemap: https://muchas-glacias.com/sitemap.xml
+User-agent: *
+Disallow:

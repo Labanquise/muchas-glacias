@@ -1,3 +1,7 @@
+---
+title : "Muchas Glacias - Testeur de site web écologique et accessible"
+---
+
 ## Bêta 
 
 Ce testeur de site, Muchas Glacias, est dans une première version qualifiée généreusement de  Bêta.

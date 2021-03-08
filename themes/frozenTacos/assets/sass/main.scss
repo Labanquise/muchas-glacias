@@ -37,9 +37,10 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
 
 #res-pepper, .links, #moreInfo {content-visibility: auto;}
 
-fieldset {width:100%;height:4.2rem;padding:0;border: 0.15rem solid $c_kaki;border-radius: 2.1rem;display: flex;justify-content: center;margin:3.75rem 0;
+.mg fieldset {width:100%;height:4.2rem;padding:0;border: 0.15rem solid $c_kaki;border-radius: 2.1rem;display: flex;justify-content: center;margin:3.75rem 0;
     label {width: 5%;line-height: 4.2rem;}
-    input, button, label {font-family: 'Poppins', Verdana, sans-serif;color: $c_kaki;border: 0;background-color: $c_white;}
+    input, label {font-family: 'Poppins', Verdana, sans-serif;}
+    input, button, label {color: $c_kaki;border: 0;background-color: $c_white;}
     input[type=url] {width: 77%;}
     button {width: 8%;cursor: pointer;font-size: 3rem;}
 }

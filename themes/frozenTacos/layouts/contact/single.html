@@ -1,0 +1,34 @@
+{{ define "main" }}
+<section class="contact">
+    <h1>Nous contacter</h1>
+    <p>Vous souhaitez nous poser des questions sur les résultats obtenus, nous aider en remontant un bug ou tout simplement mieux nous connaître: laissez-nous un message après le bip sonore, nous vous répondrons en moins de 24 heures.<br><br><i>Labanqui.se ne conserve pas vos données. Elles ne seront donc aucunement exploitées.</i></p>
+    <form id="contact" name="contact" method="POST">
+            <label for="name">🦦 Qui êtes vous ?</label>
+            <input type="text" id="name" name="name">
+            <hr>
+            <label>📵 Souhaitez vous être recontacté ?</label>
+        <p class="radio">
+            <input type="radio" name="recontact" id="r-oui" value="oui" onclick="showR(true)"><label for="r-oui">Oui</label>
+            <input type="radio" name="recontact" id="r-non" value="non" onclick="showR(false)"><label for="r-non">Non</label>
+        </p>
+        <hr>
+        <div class="grid hidden">
+            <div>
+                <label for="email">📬 Email :</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <hr class="hidden">
+            <div>
+                <label for="tel">📞 Téléphone :</label>
+                <input type="tel" id="tel" name="tel">
+            </div>
+               
+        </div>
+        <hr>
+        <label for="message">🧾 Votre message :</label>
+        <textarea id="message" name="message"></textarea>
+    
+        <button type="button" onclick="sendContact()">Envoyer</button>
+    </form>
+</section>
+{{ end }}

@@ -7,7 +7,10 @@ $mobile-width: 67.5rem;
 }
 
 @include mobile(){
-    header, #content section {width: 92%;}
+    header, #content section {
+        width: 92%;
+        &.contact {width: 92%;margin:2.5rem auto;}
+    }
     
     header {padding: 3.75rem 0;margin-bottom:0;
         img {margin:0 auto;padding: 0;display: block;}
@@ -52,5 +55,18 @@ $mobile-width: 67.5rem;
     .links {flex-direction: column;
         span:nth-child(2){display: none;}
         span {text-align: center;padding-bottom:0.5rem;}
+    }
+
+    /* Contact */
+    #content .contact {
+        h1 {font-size: 2.5rem;}
+         input[type=text], input[type=email], input[type=tel], textarea {width: 100%;}
+         .grid {display:initial;}
+         .grid.hidden {display: none;}
+         hr.hidden {display: block;}
+     }
+
+     .mg, .mg-score {
+        .callme {position: sticky;margin:2rem auto 0;bottom:1rem;display: block;}
     }
 }

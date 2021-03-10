@@ -3,7 +3,6 @@
     <h1>Testez votre site</h1>
     <p>Dans quelques secondes, vous saurez combien votre site pollue, si il est accessible et si il est performant !</p>
 
-    
     <fieldset>
         <label for="url2test">URL :</label>
         <input name="url2test" id="url2test" type="url" onfocus="this.value=''" value="Saisissez l'url du site à tester sous la forme http://www.monsite.fr"><button type="button" class="material-icons-outlined" id="url2testButton" onclick="launch(document.getElementById('url2test').value)">search</button>
@@ -115,6 +114,7 @@
     <div class="links">
         <span onclick="contentToggle('moreInfo','whyTest')">Comprendre mes résultats</span><span>&nbsp;|&nbsp;</span><span onclick="contentToggle('whyTest','moreInfo')">Pourquoi Tester ?</span>
     </div>
+    <a href="{{ ref . "contact" }}" class="callme">Une question ? Contactez-nous</a>
 </section>
 
 {{ $cols := split .Content "|||||" }}

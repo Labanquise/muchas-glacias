@@ -308,3 +308,92 @@ const gauge = (id, score) => {
         document.getElementById('resM-'+id).classList.remove('hidden');
     }
 }
+
+var d = new Date(Date.now() + (90*24*60*60*1000));
+var expires = "expires="+ d.toUTCString();
+// Get the value of a cookie by giving its name
+function getValueCookie(cname){
+    tab = [];
+    tab = document.cookie.split(/=|;/)
+    for (i = 0; i < tab.length; i++){
+      if (tab[i].match(cname)){
+        return tab[i+1];
+      }
+    }
+  }
+
+// Change font -> dyslexia if poppins / poppins if dyslexia
+function changeFont(){
+    if (document.body.classList.contains("opendys")){
+      document.body.classList.remove("opendys");
+      document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; " + expires + "; Secure; sameSite=None";  
+    }
+    else{
+      document.body.classList.add("opendys");
+      document.cookie = "cookie_labanqui.se_font=OpenDys; path=/; " + expires + "; Secure; sameSite=None";
+    }
+  }
+  
+  // Change size of the font
+  var size = 100;
+  function changeSizeFont(param){
+    var size2 = getValueCookie(/cookie_labanqui.se_size/);
+    size2 = parseInt(size2);
+    var ht = document.documentElement.classList;
+    if (size2 != size && size2 <= 200 && size2 >= 90)
+      size = size2;
+      
+    else
+      ht.remove("fz" + size);
+  
+    if (param == 1 && size < 200){
+        if (size < 110){
+          size += 10;
+        }
+        else if (size < 125){
+          size += 15;
+        }
+        else if(size < 150)
+          size += 25;
+  
+        else if(size < 200)
+          size += 50;
+      }
+      else if (param == 0 && size > 90){
+        if(size >= 200)
+          size -= 50;
+        else if(size >= 150)
+          size -= 25;
+        else if (size >= 125){
+          size -= 15;
+        }
+        else if (size >= 110 || size < 110){
+          size -= 10;
+        } 
+      }
+      if (size != 100 && size >= 90 && size <= 200){
+        ht.add("fz" + size);
+        document.cookie = "cookie_labanqui.se_size=" + size +"; path=/; " + expires + "; Secure; sameSite=None";
+      }
+      else{
+        document.cookie = "cookie_labanqui.se_size=100; path=/; " + expires + "; Secure; sameSite=None";
+        size = 100;
+      }
+    }
+  
+  //delete the classes of the html (those put for the font and the font size)
+  function initialVersion(){
+  
+    if (document.body.classList.contains("opendys")){
+       document.body.classList.remove("opendys");
+       document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; + expires +; Secure; sameSite=None"; 
+    }
+    if (document.cookie.match(/cookie_labanqui.se_size/)){
+      var size = getValueCookie(/cookie_labanqui.se_size/);
+      if (size != 100 && size >= 90 && size <= 200)
+        document.documentElement.classList.remove("fz"+size);
+      
+        document.cookie = "cookie_labanqui.se_size=100; path=/; " + expires + "; Secure; sameSite=None";
+  
+    }
+  }

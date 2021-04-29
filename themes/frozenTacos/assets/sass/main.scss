@@ -4,6 +4,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap');
+@font-face {
+    font-family: 'OpenDys';
+    src: url('/fonts/OpenDyslexic-Regular.otf') format('truetype');
+  }
 
 /* Color definition */
 $c_kaki : #40615E;
@@ -29,6 +33,12 @@ header, #content section {width: 63.75rem;margin:auto;}
 header {position: relative;height: 10.375rem;margin-bottom: 4.75rem;}
 header a img {padding-top:1rem;}
 header .version {position:absolute;transform: rotate(-90deg);right:-1.4rem;top: 1.4rem;width:4.5rem;height: 4.6875rem;background-color: $c_kaki;border-radius: 2.3rem 0 0 2.3rem;font-size: 1.5rem;font-weight: bold;color:$c_grey;text-transform: uppercase;line-height:8.2rem;padding-left: 3rem;}
+
+/* Buttons sizes and dyslexia */
+.bord a{font-size : 1rem; margin: auto; cursor: pointer; color: $c_white;}
+.bord{border: solid; background-color: $c_blue; border-radius: 16px; border-color: $c_blue; height: 2rem; display: flex; position: relative; left:350px; top: -80px; width: 20.5rem;}
+.bord span{color:$c_blueIce; margin: auto;}
+.bord :nth-child(n){margin-left: 8px; margin-right: 8px;}
 
 footer {background-color: $c_blue;color:$c_blueIce;min-height: 3.25rem;line-height: 3.25rem;vertical-align: middle;text-align: center;}
 footer a {text-decoration: none;color: $c_white;}
@@ -260,6 +270,22 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     .hidden {display: none;}
     button {width:17.8125rem;height:3rem;background-color: $c_blueIce;color: $c_blue;font-weight: bold;border-radius: 0.3rem;cursor: pointer;border: none;display: block;margin:3rem auto 0;}
 }
+
+// Change the sizes
+html.fz200{font-size: 200%;
+    #content {overflow: visible;}
+    #s-desc, #s-pollue, #s-injuste, #wrapSV {content-visibility: visible;}
+}
+html.fz150{font-size: 150%;
+    #content {overflow: visible;}
+    #s-desc, #s-pollue, #s-injuste, #wrapSV {content-visibility: visible;}
+}
+html.fz125{font-size: 125%;}
+html.fz110{font-size: 110%;}
+html.fz90{font-size: 90%;}
+
+//change the font
+body.opendys{font-family: "OpenDys" !important;}
 
 /* Mobile version */
 @import 'mobile';

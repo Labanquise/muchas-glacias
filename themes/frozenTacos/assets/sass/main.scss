@@ -20,6 +20,7 @@ $c_Rred : #C8222C;
 $c_Rorange : #F4AB00;
 $c_Rgreen : #1CAF9C;
 $c_blueIce : #41C0F0;
+$c_blueDenim : #1D70B7;
 
 body {font-family: 'Poppins', Verdana, sans-serif;}
 html {background:$c_grey;color: $c_blue;}
@@ -36,7 +37,7 @@ header .version {position:absolute;transform: rotate(-90deg);right:-1.4rem;top: 
 
 /* Buttons sizes and dyslexia */
 .bord a{font-size : 1rem; margin: auto; cursor: pointer; color: $c_white;}
-.bord{border: solid; background-color: $c_blue; border-radius: 16px; border-color: $c_blue; height: 2rem; display: flex; position: relative; left:350px; top: -80px; width: 20.5rem;}
+.bord{border: solid; background-color: $c_blue; border-radius: 16px; border-color: $c_blue; height: 2rem; display: flex; position: relative; left:700px; top: -10px; width: 20.5rem;}
 .bord span{color:$c_blueIce; margin: auto;}
 .bord :nth-child(n){margin-left: 8px; margin-right: 8px;}
 
@@ -269,6 +270,12 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     textarea {width: 100%;height: 9rem;}
     .hidden {display: none;}
     button {width:17.8125rem;height:3rem;background-color: $c_blueIce;color: $c_blue;font-weight: bold;border-radius: 0.3rem;cursor: pointer;border: none;display: block;margin:3rem auto 0;}
+}
+
+/* Cookies */
+aside.cookies {height:3rem;background-color: $c_blueDenim;display: flex;align-items:center; justify-content: center; position:fixed; bottom: 0; width: 100%; z-index: 4;
+    div {color:$c_white;font-size: 0.8rem; }
+    a {cursor: pointer;width:8.75rem;height: 2.25rem;border-radius: 0.5rem;background-color: $c_white;text-align: center;text-decoration: none;line-height: 2.25rem;color: $c_blue;margin-left:1rem;}
 }
 
 // Change the sizes

@@ -309,8 +309,46 @@ const gauge = (id, score) => {
     }
 }
 
+// Cookies
+// Create cookie
+function setCookie() {
+  var d = new Date(Date.now() + (90*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  var cookieLB = "labanqui.se_cookie=cookie-consent-labanqui.se;path=/; " + expires + "; Secure; sameSite=None";
+  document.cookie = cookieLB;
+  document.getElementById('cookie').style.display = "none";
+}
+
+// On loading of the page -> if there is already a cookie, doesn't display the message in order to create one
+//                        -> if there is alredy a cookie for the font -> take the value of the cookie for the font
+//                        -> if there is alredy a cookie for the font size -> take the value of the cookie for the font size
 var d = new Date(Date.now() + (90*24*60*60*1000));
 var expires = "expires="+ d.toUTCString();
+
+window.onload = function ()
+{
+    if (document.cookie.match(/labanqui.se_cookie/))
+      document.getElementById('cookie').style.display = "none";
+    var cookieName = /cookie_labanqui.se_font/;
+    var cookieName2 = /cookie_labanqui.se_size/;
+    if (document.cookie.match(cookieName)){
+      var styfont = getValueCookie(cookieName);
+      if (styfont == "OpenDys")
+        document.body.classList.add("opendys");
+      }
+    else{
+      document.body.classList.remove("opendys");
+    }
+    if (document.cookie.match(cookieName2)){
+      var stysize = getValueCookie(cookieName2);
+      if (stysize != 100 && stysize >= 90 && stysize <= 200)
+        document.documentElement.classList.add("fz"+stysize);
+      else
+      document.cookie = "cookie_labanqui.se_size=100; path=/; " + expires + "; Secure; sameSite=None";
+
+    }
+};
+
 // Get the value of a cookie by giving its name
 function getValueCookie(cname){
     tab = [];

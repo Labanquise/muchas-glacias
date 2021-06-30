@@ -247,7 +247,7 @@ const googleLH = async (url, type, id) => {
 
 // Seting up query for PageSpeed
 const setUpQuery = (url, type) => {
-    const api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
+    const api = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed';
     const searchParams = new URLSearchParams({
         url: url,
         category: type,

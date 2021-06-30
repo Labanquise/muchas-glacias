@@ -15,6 +15,8 @@ $mobile-width: 67.5rem;
     header {padding: 3.75rem 0;margin-bottom:0;
         img {margin:0 auto;padding: 0;display: block;}
         .version {width:2.55rem;height: 2.5rem;padding-left: 1.2rem;font-size: 1rem;right: 0;top: 0.625rem;line-height: 4.4rem;}
+        .bord{position:relative; left: -5px; top: -210px; width: 14.9rem;}
+        .bord a, .bord span{font-size: 0.5rem;}
     }
 
     h1, .mg-score h1 {font-size: 1.5rem;}
@@ -69,4 +71,9 @@ $mobile-width: 67.5rem;
      .mg, .mg-score {
         .callme {position: sticky;margin:2rem auto 0;bottom:1rem;display: block;}
     }
+
+    // Cookies
+    aside.cookies{font-size: 0.7s5rem;padding:0 4%; height: 150px; width: 92%;
+        div {text-align: left; position: absolute; top: 25px; left: 12px; font-weight: bold;}
+        a {position: absolute; bottom: 30px;}}
 }

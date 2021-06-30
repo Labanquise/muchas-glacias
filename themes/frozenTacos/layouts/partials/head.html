@@ -1,17 +1,4 @@
 <head>
-    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HC94L3CZ41"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-HC94L3CZ41');
-        gtag('config', 'UA-186825112-2');
-    </script>
-    {{ end }}
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}{{ end }}</title>
@@ -26,6 +13,17 @@
     {{ end }}
 
     {{ template "_internal/opengraph.html" . }}
+
+    {{ $poppins := resources.Get "/fonts/Poppins-Regular.woff2" }}
+    {{ $poppinsBold := resources.Get "/fonts/Poppins-Bold.woff2" }}
+    {{ $open := resources.Get "/fonts/OpenDyslexic-Regular.otf" }}
+    {{ $materials := resources.Get "/fonts/materials.woff2" }}
+    <link rel="preload" as="font" href="{{ $poppins.Permalink }}" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="{{ $poppinsBold.Permalink }}" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="{{ $open.Permalink }}" type="font/otf" crossorigin>
+    <link rel="preload" as="font" href="{{ $materials.Permalink }}" type="font/woff2" crossorigin>
+
+    <link rel="dns-prefetch" as="script" href="https://www.googletagmanager.com/gtag/js?id=G-HC94L3CZ41">
   
     <link rel="canonical" href="{{ .Permalink }}" />
     <link rel="icon" type="image/png" sizes="32x32" href="/ico/favicon.png">

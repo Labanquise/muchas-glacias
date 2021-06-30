@@ -1,14 +1,8 @@
 /* Import SCSS */
 @import 'normalize';
 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap');
-@font-face {
-    font-family: 'OpenDys';
-    src: url('/fonts/OpenDyslexic-Regular.otf') format('truetype');
-  }
+/* Import Fonts */
+@import 'fonts';
 
 /* Color definition */
 $c_kaki : #40615E;

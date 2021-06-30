@@ -56,6 +56,24 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     button {width: 8%;cursor: pointer;font-size: 3rem;}
 }
 
+/*Score*/
+#score {position:absolute;top:32rem;right:0;width:13rem;height:4rem;z-index: 10;
+    font-family: Arial, Helvetica, sans-serif;
+    color: $c_white;
+    font-size: .75rem;
+    background: $c_blue url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='24.727' fill='%23fff' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M31.575 12.942c-.5-.458-1.456.632-2.351 1.485s-3.086 2.235-7.308-.168c-1.629-.927-7.658-9.523-10.134-11.026-.821-.522-1.758-.835-2.728-.912a1.05 1.05 0 0 1 .527.321c.825.966-.545 3.443-3.061 5.531s-5.225 3-6.05 2.031a1 1 0 0 1-.222-.51c-.019.061-.041.121-.058.182 0 0-2.173 6.409 8.27 12.354s17.719-.5 18.561-1.171c.924-.743 6.55-6.299 4.554-8.117zM.898 8.873c.5.587 2.548-.3 4.571-1.979s3.257-3.517 2.756-4.1c-.4-.466-1.771 0-3.333 1.049A2.1 2.1 0 0 1 3.815 2.5C3.733 1.83 3.83.64 3.709.3a.3.3 0 0 0-.068-.184c-.224-.262-.932-.038-1.582.5s-.995 1.189-.771 1.451a8.63 8.63 0 0 0 1.628 3.356h0C1.343 6.9.461 8.361.898 8.873z'/%3E%3C/svg%3E") 1.375rem 1.375rem no-repeat;
+    border-radius: 2rem 0 0 2rem;
+    padding:1.15rem 0 0 4.15rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    > .material-icons-outlined {position: absolute;right:0.5rem;top:1.5rem;}
+    b {font-size: 1rem;}
+    .details {position: absolute;top:4.8rem;right:1rem;background-color:$c_white;padding:.75rem;color: $c_blue;white-space: nowrap;border-radius:0.5rem;
+        .material-icons-outlined {position: absolute;right:0;top:-1.1rem;font-size: 2rem;color: $c_white;}
+    }
+
+}
+
 #waiting {margin:3.75rem auto;width: auto;display: flex;justify-content: center;align-items: center;font-size: 1.25rem;
     &.error {color: $c_Rred;
         .material-icons-outlined {animation: none;}

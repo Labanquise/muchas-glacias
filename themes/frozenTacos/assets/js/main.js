@@ -1,7 +1,6 @@
 // Global Actions
 let reboot = false;
-const { display } = window.getComputedStyle(document.getElementById('res-ei'));
-const mobile = display == 'none';
+let mobile = null;
 
 // Listeners
 if (document.readyState === 'loading') {  // Loading hasn't finished yet
@@ -12,6 +11,9 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
 
 //Check Enter
 function keyPressed(){
+  const { display } = window.getComputedStyle(document.getElementById('res-ei'));
+  mobile = display == 'none';
+
     const url2Test = document.getElementById('url2test');
     if (!!url2Test) {
         url2Test.addEventListener('keydown', event => {
@@ -435,3 +437,7 @@ function changeFont(){
   
     }
   }
+
+const score = () => {
+  document.querySelector('#score .details').classList.toggle('hidden');
+}

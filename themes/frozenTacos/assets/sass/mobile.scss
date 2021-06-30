@@ -15,8 +15,8 @@ $mobile-width: 67.5rem;
     header {padding: 3.75rem 0;margin-bottom:0;
         img {margin:0 auto;padding: 0;display: block;}
         .version {width:2.55rem;height: 2.5rem;padding-left: 1.2rem;font-size: 1rem;right: 0;top: 0.625rem;line-height: 4.4rem;}
-        .bord{position:relative; left: -5px; top: -210px; width: 14.9rem;}
-        .bord a, .bord span{font-size: 0.5rem;}
+        .bord{left:0rem; top:1rem; width: 14rem;}
+        .bord a, .bord span{font-size: 0.75rem;}
     }
 
     h1, .mg-score h1 {font-size: 1.5rem;}

@@ -1,7 +1,6 @@
 // Global Actions
 let reboot = false;
-const { display } = window.getComputedStyle(document.getElementById('res-ei'));
-const mobile = display == 'none';
+let mobile = null;
 
 // Listeners
 if (document.readyState === 'loading') {  // Loading hasn't finished yet
@@ -12,6 +11,9 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
 
 //Check Enter
 function keyPressed(){
+  const { display } = window.getComputedStyle(document.getElementById('res-ei'));
+  mobile = display == 'none';
+
     const url2Test = document.getElementById('url2test');
     if (!!url2Test) {
         url2Test.addEventListener('keydown', event => {
@@ -247,7 +249,7 @@ const googleLH = async (url, type, id) => {
 
 // Seting up query for PageSpeed
 const setUpQuery = (url, type) => {
-    const api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
+    const api = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed';
     const searchParams = new URLSearchParams({
         url: url,
         category: type,
@@ -307,4 +309,135 @@ const gauge = (id, score) => {
         document.querySelector(`#resM-${id} .slime`).style.width = score+'%';
         document.getElementById('resM-'+id).classList.remove('hidden');
     }
+}
+
+// Cookies
+// Create cookie
+function setCookie() {
+  var d = new Date(Date.now() + (90*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  var cookieLB = "labanqui.se_cookie=cookie-consent-labanqui.se;path=/; " + expires + "; Secure; sameSite=None";
+  document.cookie = cookieLB;
+  document.getElementById('cookie').style.display = "none";
+}
+
+// On loading of the page -> if there is already a cookie, doesn't display the message in order to create one
+//                        -> if there is alredy a cookie for the font -> take the value of the cookie for the font
+//                        -> if there is alredy a cookie for the font size -> take the value of the cookie for the font size
+var d = new Date(Date.now() + (90*24*60*60*1000));
+var expires = "expires="+ d.toUTCString();
+
+window.onload = function ()
+{
+    if (document.cookie.match(/labanqui.se_cookie/))
+      document.getElementById('cookie').style.display = "none";
+    var cookieName = /cookie_labanqui.se_font/;
+    var cookieName2 = /cookie_labanqui.se_size/;
+    if (document.cookie.match(cookieName)){
+      var styfont = getValueCookie(cookieName);
+      if (styfont == "OpenDys")
+        document.body.classList.add("opendys");
+      }
+    else{
+      document.body.classList.remove("opendys");
+    }
+    if (document.cookie.match(cookieName2)){
+      var stysize = getValueCookie(cookieName2);
+      if (stysize != 100 && stysize >= 90 && stysize <= 200)
+        document.documentElement.classList.add("fz"+stysize);
+      else
+      document.cookie = "cookie_labanqui.se_size=100; path=/; " + expires + "; Secure; sameSite=None";
+
+    }
+};
+
+// Get the value of a cookie by giving its name
+function getValueCookie(cname){
+    tab = [];
+    tab = document.cookie.split(/=|;/)
+    for (i = 0; i < tab.length; i++){
+      if (tab[i].match(cname)){
+        return tab[i+1];
+      }
+    }
+  }
+
+// Change font -> dyslexia if poppins / poppins if dyslexia
+function changeFont(){
+    if (document.body.classList.contains("opendys")){
+      document.body.classList.remove("opendys");
+      document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; " + expires + "; Secure; sameSite=None";  
+    }
+    else{
+      document.body.classList.add("opendys");
+      document.cookie = "cookie_labanqui.se_font=OpenDys; path=/; " + expires + "; Secure; sameSite=None";
+    }
+  }
+  
+  // Change size of the font
+  var size = 100;
+  function changeSizeFont(param){
+    var size2 = getValueCookie(/cookie_labanqui.se_size/);
+    size2 = parseInt(size2);
+    var ht = document.documentElement.classList;
+    if (size2 != size && size2 <= 200 && size2 >= 90)
+      size = size2;
+      
+    else
+      ht.remove("fz" + size);
+  
+    if (param == 1 && size < 200){
+        if (size < 110){
+          size += 10;
+        }
+        else if (size < 125){
+          size += 15;
+        }
+        else if(size < 150)
+          size += 25;
+  
+        else if(size < 200)
+          size += 50;
+      }
+      else if (param == 0 && size > 90){
+        if(size >= 200)
+          size -= 50;
+        else if(size >= 150)
+          size -= 25;
+        else if (size >= 125){
+          size -= 15;
+        }
+        else if (size >= 110 || size < 110){
+          size -= 10;
+        } 
+      }
+      if (size != 100 && size >= 90 && size <= 200){
+        ht.add("fz" + size);
+        document.cookie = "cookie_labanqui.se_size=" + size +"; path=/; " + expires + "; Secure; sameSite=None";
+      }
+      else{
+        document.cookie = "cookie_labanqui.se_size=100; path=/; " + expires + "; Secure; sameSite=None";
+        size = 100;
+      }
+    }
+  
+  //delete the classes of the html (those put for the font and the font size)
+  function initialVersion(){
+  
+    if (document.body.classList.contains("opendys")){
+       document.body.classList.remove("opendys");
+       document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; + expires +; Secure; sameSite=None"; 
+    }
+    if (document.cookie.match(/cookie_labanqui.se_size/)){
+      var size = getValueCookie(/cookie_labanqui.se_size/);
+      if (size != 100 && size >= 90 && size <= 200)
+        document.documentElement.classList.remove("fz"+size);
+      
+        document.cookie = "cookie_labanqui.se_size=100; path=/; " + expires + "; Secure; sameSite=None";
+  
+    }
+  }
+
+const score = () => {
+  document.querySelector('#score .details').classList.toggle('hidden');
 }

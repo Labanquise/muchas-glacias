@@ -5,12 +5,6 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
     getData();
 }
 
-// Toggling Class
-const contentToggle = (id, id2) => {
-    document.getElementById(id).classList.toggle('hidden');
-    document.getElementById(id2).classList.add('hidden');
-}
-
 // Saving in BDD
 async function getData(){
     const queryString = window.location.search;
@@ -38,11 +32,11 @@ const populate = (res,id) => {
     document.getElementById('date').innerHTML = date;
 
 
-    gauge('ei',res['eco-index']);
-    gauge('perf',res['lighthouse-perf']);
-    gauge('acc',res['lighthouse-accessibility']);
-    gauge('bp',res['lighthouse-best-practices']);
-    gauge('seo',res['lighthouse-seo']);
+    gaugeB('ei',res['eco-index']);
+    gaugeB('perf',res['lighthouse-perf']);
+    gaugeB('acc',res['lighthouse-accessibility']);
+    gaugeB('bp',res['lighthouse-best-practices']);
+    gaugeB('seo',res['lighthouse-seo']);
 
     document.getElementById('res-pepper').classList.add('done', res['pepper-index']);
     document.getElementById('s-pepper').innerHTML = res['pepper-index-score'];
@@ -58,7 +52,7 @@ const getDate = (date,ts) => {
 }
 
 // Animating Mobile results
-const gauge = (id, score) => {
+const gaugeB = (id, score) => {
     if(score === null)
       console.log('error null');
     else{

@@ -8,7 +8,7 @@
 @import 'colors';
 
 body {font-family: 'Poppins', Verdana, sans-serif;}
-html {background:$c_grey;color: $c_blue;}
+html {background:$c_greenDark;color: $c_white;}
 header, #content section {width: 63.75rem;margin:auto;}
 #content {min-height: calc(100vh - 18.375rem);}
 #content section {margin-bottom:5rem;}
@@ -18,15 +18,15 @@ header, #content section {width: 63.75rem;margin:auto;}
 
 header {position: relative;height: 10.375rem;margin-bottom: 4.75rem;}
 header a img {padding-top:1rem;}
-header .version {position:absolute;transform: rotate(-90deg);right:-1.4rem;top: 1.4rem;width:4.5rem;height: 4.6875rem;background-color: $c_kaki;border-radius: 2.3rem 0 0 2.3rem;font-size: 1.5rem;font-weight: bold;color:$c_grey;text-transform: uppercase;line-height:8.2rem;padding-left: 3rem;}
+header .version {position:absolute;transform: rotate(-90deg);right:-1.4rem;top: 1.4rem;width:7rem;height: 3.5rem;background-color: $c_greenLight;border-radius: 2.3rem 0 0 2.3rem;font-size: 1.5rem;font-weight: bold;color:$c_greenDark;text-transform: uppercase;line-height:3.5rem;padding-top:1.3rem;box-sizing: border-box;text-align: center;}
 
 /* Buttons sizes and dyslexia */
-.bord{border: solid; background-color: $c_grey; border-color: $c_grey; height: 2rem; display: flex; position: absolute; width: 20.5rem;top:2rem;right: 5rem;
-    a{font-size : 1rem; margin: auto; cursor: pointer; color: $c_blue;}
+.bord{ height: 2rem; display: flex; position: absolute; width: 20.5rem;top:2rem;right: 5rem;
+    a{font-size : 1rem; margin: auto; cursor: pointer; color: $c_white;}
     span{color:$c_kaki; margin: auto;}
 }
 
-footer {background-color: $c_blue;color:$c_blueIce;min-height: 3.25rem;line-height: 3.25rem;vertical-align: middle;text-align: center;}
+footer {background-color: $c_blueDark;color:$c_blueIce;min-height: 3.25rem;line-height: 3.25rem;vertical-align: middle;text-align: center;}
 footer a {text-decoration: none;color: $c_white;}
 
 h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
@@ -35,7 +35,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
 #res-pepper, .links, #moreInfo {content-visibility: auto;}
 
 .mg, .mg-score {position: relative;
-    .callme {text-decoration: none;background-color: $c_blueIce;color: $c_blue;width: 17.8125rem;height: 3rem;border-radius: 0.5rem;position: absolute;text-align: center;line-height: 3rem;right:0;top:1rem;}
+    .callme {text-decoration: none;background-color: $c_blueIce;color: $c_blueDark;width: 17.8125rem;height: 3rem;border-radius: 0.5rem;position: absolute;text-align: center;line-height: 3rem;right:0;top:1rem;font-weight: bold;}
 }
 
 .mg fieldset {width:100%;height:4.2rem;background-color:$c_white;padding:0;border: 0.15rem solid $c_kaki;border-radius: 2.1rem;display: flex;justify-content: center;margin:3.75rem 0;
@@ -51,14 +51,14 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     font-family: Arial, Helvetica, sans-serif;
     color: $c_white;
     font-size: .75rem;
-    background: $c_blue url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='24.727' fill='%23fff' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M31.575 12.942c-.5-.458-1.456.632-2.351 1.485s-3.086 2.235-7.308-.168c-1.629-.927-7.658-9.523-10.134-11.026-.821-.522-1.758-.835-2.728-.912a1.05 1.05 0 0 1 .527.321c.825.966-.545 3.443-3.061 5.531s-5.225 3-6.05 2.031a1 1 0 0 1-.222-.51c-.019.061-.041.121-.058.182 0 0-2.173 6.409 8.27 12.354s17.719-.5 18.561-1.171c.924-.743 6.55-6.299 4.554-8.117zM.898 8.873c.5.587 2.548-.3 4.571-1.979s3.257-3.517 2.756-4.1c-.4-.466-1.771 0-3.333 1.049A2.1 2.1 0 0 1 3.815 2.5C3.733 1.83 3.83.64 3.709.3a.3.3 0 0 0-.068-.184c-.224-.262-.932-.038-1.582.5s-.995 1.189-.771 1.451a8.63 8.63 0 0 0 1.628 3.356h0C1.343 6.9.461 8.361.898 8.873z'/%3E%3C/svg%3E") 1.375rem 1.375rem no-repeat;
+    background: $c_blueDark url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='24.727' fill='%23fff' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M31.575 12.942c-.5-.458-1.456.632-2.351 1.485s-3.086 2.235-7.308-.168c-1.629-.927-7.658-9.523-10.134-11.026-.821-.522-1.758-.835-2.728-.912a1.05 1.05 0 0 1 .527.321c.825.966-.545 3.443-3.061 5.531s-5.225 3-6.05 2.031a1 1 0 0 1-.222-.51c-.019.061-.041.121-.058.182 0 0-2.173 6.409 8.27 12.354s17.719-.5 18.561-1.171c.924-.743 6.55-6.299 4.554-8.117zM.898 8.873c.5.587 2.548-.3 4.571-1.979s3.257-3.517 2.756-4.1c-.4-.466-1.771 0-3.333 1.049A2.1 2.1 0 0 1 3.815 2.5C3.733 1.83 3.83.64 3.709.3a.3.3 0 0 0-.068-.184c-.224-.262-.932-.038-1.582.5s-.995 1.189-.771 1.451a8.63 8.63 0 0 0 1.628 3.356h0C1.343 6.9.461 8.361.898 8.873z'/%3E%3C/svg%3E") 1.375rem 1.375rem no-repeat;
     border-radius: 2rem 0 0 2rem;
     padding:1.15rem 0 0 4.15rem;
     box-sizing: border-box;
     cursor: pointer;
     > .material-icons-outlined {position: absolute;right:0.5rem;top:1.5rem;}
     b {font-size: 1rem;}
-    .details {position: absolute;top:4.8rem;right:1rem;background-color:$c_white;padding:.75rem;color: $c_blue;white-space: nowrap;border-radius:0.5rem;
+    .details {position: absolute;top:4.8rem;right:1rem;background-color:$c_white;padding:.75rem;color: $c_blueDark;white-space: nowrap;border-radius:0.5rem;
         .material-icons-outlined {position: absolute;right:0;top:-1.1rem;font-size: 2rem;color: $c_white;}
     }
 
@@ -113,11 +113,11 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     width: 7.5rem;
     height: 17.5rem;
     border-radius: 3.75rem;
-    background-color: $c_blue;
+    background-color: $c_blueDark;
     .slime {position: absolute;width: 7rem;height: 4.5rem;bottom: 0.25rem;background-color: $c_white;border-radius: 0 0 3.5rem 3.5rem;margin:0 auto;left:-50%;right:-50%;z-index: 1;
     }
-    .level {position: absolute;width: 7.2rem;height: 2rem;bottom: 3.75rem;background-color:$c_blue;margin:0 auto;left:-50%;right:-50%;z-index: 2;}
-    .bubble {position: absolute;width: 0.5rem;height: 0.5rem;background-color: $c_blue;border-radius: 1rem;bottom:2rem;right:1rem;z-index: 3;opacity: 0.5;
+    .level {position: absolute;width: 7.2rem;height: 2rem;bottom: 3.75rem;background-color:$c_blueDark;margin:0 auto;left:-50%;right:-50%;z-index: 2;}
+    .bubble {position: absolute;width: 0.5rem;height: 0.5rem;background-color: $c_blueDark;border-radius: 1rem;bottom:2rem;right:1rem;z-index: 3;opacity: 0.5;
         &.b1 {animation: 2s ease-in 0s infinite forwards b1;}
         &.b2 {width: 1rem;height: 1rem;right: 2rem;bottom:1rem;animation: 1s ease-in 1.5s infinite forwards b2;}
         &.b3 {width: 0.8rem;height: 0.8rem;right: 1.8rem;bottom:2.5rem;animation: 1.8s ease-in 1s infinite forwards b3;}
@@ -222,7 +222,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     &.done {
         background-color: #f0f9e2;
     }
-    #link2Share {padding-left: 1rem;font-size: 3rem;text-decoration: none;color: $c_blue;font-weight: bold;} 
+    #link2Share {padding-left: 1rem;font-size: 3rem;text-decoration: none;color: $c_blueDark;font-weight: bold;} 
 }
 
 .resultats .progress{width: 100%;margin-bottom:1.5rem;
@@ -250,11 +250,27 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     }
 }
 
+.results {display: flex;justify-content:space-evenly;
+    .pill {width: 6.25rem;height:17.5rem;box-sizing: border-box;border:2px solid $c_white;border-radius: 3.75rem;
+        position: relative;display:flex;flex-direction:column-reverse;
+        .gauge {width:5.25rem;margin:0 auto .375rem;
+            .top, .bot {background-color: $c_white;height:2.625rem;}
+            .mid {height: 0;background-color: $c_white;}
+            .top {border-radius: 3.75rem 3.75rem 0 0;}
+            .bot {border-radius: 0 0 3.75rem 3.75rem;}
+
+        }
+        .score {position: absolute;width:5.25rem;margin:0 .375rem;text-align: center;color: $c_greenDark;bottom:1.5rem;
+            span {font-weight: bold;font-size: 1.75rem;}
+        }
+    }
+}
+
 .links {padding-top:2rem ;display: flex;justify-content: center;
     span:nth-child(odd) {text-decoration: underline;cursor: pointer;}
 }
 
-.content {padding-top:2rem;border-top:0.25rem dashed $c_blue;
+.content {padding-top:2rem;border-top:0.25rem dashed $c_blueDark;
     img {max-width: 100%;}
 }
 
@@ -272,13 +288,13 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     .radio label {margin-right:2rem;}
     textarea {width: 100%;height: 9rem;}
     .hidden {display: none;}
-    button {width:17.8125rem;height:3rem;background-color: $c_blueIce;color: $c_blue;font-weight: bold;border-radius: 0.3rem;cursor: pointer;border: none;display: block;margin:3rem auto 0;}
+    button {width:17.8125rem;height:3rem;background-color: $c_blueIce;color: $c_blueDark;font-weight: bold;border-radius: 0.3rem;cursor: pointer;border: none;display: block;margin:3rem auto 0;}
 }
 
 /* Cookies */
 aside.cookies {height:4.125rem;background-color: $c_kaki;display: flex;align-items:center; justify-content: center; position:fixed; bottom: 0; width: 100%; z-index: 4;
     div {color:$c_white;font-size: 0.8rem; }
-    a {cursor: pointer;width:8.75rem;height: 2.25rem;border-radius: 0.5rem;background-color: $c_white;text-align: center;text-decoration: none;line-height: 2.25rem;color: $c_blue;margin-left:1rem;}
+    a {cursor: pointer;width:8.75rem;height: 2.25rem;border-radius: 0.5rem;background-color: $c_white;text-align: center;text-decoration: none;line-height: 2.25rem;color: $c_blueDark;margin-left:1rem;}
 }
 
 // Change the sizes

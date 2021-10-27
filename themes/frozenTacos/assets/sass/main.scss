@@ -38,7 +38,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     .callme {text-decoration: none;background-color: $c_blueIce;color: $c_blueDark;width: 17.8125rem;height: 3rem;border-radius: 0.5rem;position: absolute;text-align: center;line-height: 3rem;right:0;top:1rem;font-weight: bold;}
 }
 
-.mg fieldset {width:100%;height:4.2rem;background-color:$c_white;padding:0;border: 0.15rem solid $c_kaki;border-radius: 2.1rem;display: flex;justify-content: center;margin:3.75rem 0;
+.mg fieldset {width:100%;height:4.2rem;background-color:$c_white;padding:0;border:none;border-radius: .5rem;display: flex;justify-content: center;margin:3.75rem 0;
     label {width: 5%;line-height: 4.2rem;}
     input, label {font-family: 'Poppins', Verdana, sans-serif;}
     input, button, label {color: $c_kaki;border: 0;background-color: $c_white;}
@@ -250,7 +250,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     }
 }
 
-.results {display: flex;justify-content:space-between;
+.results {display: flex;justify-content:space-between;margin-bottom:4.5rem;
     .pill {width: 6.25rem;height:17.5rem;box-sizing: border-box;border:2px solid $c_white;border-radius: 3.75rem;
         position: relative;display:flex;flex-direction:column-reverse;
         .gauge {width:5.25rem;margin:0 auto .375rem;

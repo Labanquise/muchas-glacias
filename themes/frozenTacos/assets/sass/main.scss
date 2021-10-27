@@ -285,7 +285,8 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
         p:first-of-type {text-align: center;
             span {font-weight: bold;font-size: 1.25rem;}
         }
-        p:last-of-type {text-align: center;position:relative;bottom:-.25rem;
+        p.exp {display:none;font-size: 0.7rem;line-height:1rem;padding:0 .6rem;text-align: center;}
+        p:last-of-type {text-align: center;position:relative;bottom:-.125rem;height:3rem;
             span{font-weight: bold;font-size: 1.75rem;}
         }
         &.carbon {
@@ -295,6 +296,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
             sub{font-size: 1rem;}
             }
         }
+        &.prez {p.exp {display: block;}p:last-of-type{display: none;}}
         &.blue {background-color: $c_blueRes;div{color: $c_blueRes;}}
         &.green {background-color: $c_greenRes;div{color: $c_greenRes;}}
         &.yellow {background-color: $c_yellowRes;div{color: $c_yellowRes;}}

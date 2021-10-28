@@ -72,14 +72,6 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
 }
 @keyframes loading{
     from {transform: rotate(0deg);} to {transform: rotate(360deg);}
-} 
-
-.resultats {width:45rem;margin:0 auto;display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
-
-
-
-
-.resultats .progress{
 }
 
 .results {display: flex;justify-content:space-between;margin-bottom:4.5rem;

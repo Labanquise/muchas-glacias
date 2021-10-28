@@ -11,9 +11,9 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
 
 //Check Enter
 function keyPressed(){
-  /*
   const { display } = window.getComputedStyle(document.getElementById('res-ei'));
   mobile = display == 'none';
+  /*
 
     const url2Test = document.getElementById('url2test');
     if (!!url2Test) {
@@ -161,11 +161,8 @@ const getPepper = data => {
     select.classList.add(colors[grade]);
     select.querySelector('div').textContent = grade;
     select.querySelector('p:last-of-type span').textContent = score;
-/*
-    document.getElementById('res-pepper').classList.add('done', grade);
-    document.getElementById('s-pepper').innerHTML = score;*/
-    console.log('Pepper Index :', score, 'et', grade);
 
+    console.log('Pepper Index :', score, 'et', grade);
     document.getElementById('waiting').classList.add('unvisible');
 
     /*setData(data, score, grade);*/
@@ -233,11 +230,10 @@ const ecoindexNcarbon = async url2Test => {
         let score = parseInt(data.Score);
         let carbon = parseFloat(data.Carbon);
         console.log(carbon);
-        /*if (mobile)
-            gauge('ei', parseInt(Score));
+        if (mobile)
+          gauge('ei', score);
         else
-            testTube('ei', parseInt(Score));*/
-        pills('ei', score);
+          pills('ei', score);
         showCarbon(carbon);
         //specific return for the promise.all
         return score;
@@ -263,11 +259,10 @@ const googleLH = async (url, type, id) => {
         const { lighthouseResult: lhRes } = await response.json();
         const score = parseInt(lhRes.categories[type].score * 100);
 
-        /*if(mobile)
-            gauge(id, score);
+        if(mobile)
+          gauge(id, score);
         else
-            testTube(id, score);*/
-        pills(id, score);
+          pills(id, score);
         //specific return for the promise.all
         return score;
     } catch (err) {

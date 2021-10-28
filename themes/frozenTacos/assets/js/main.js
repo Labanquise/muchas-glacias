@@ -11,6 +11,7 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
 
 //Check Enter
 function keyPressed(){
+  /*
   const { display } = window.getComputedStyle(document.getElementById('res-ei'));
   mobile = display == 'none';
 
@@ -22,6 +23,7 @@ function keyPressed(){
             }
         });
     }
+    */
 }
 
 // Toggling Class
@@ -62,6 +64,7 @@ const launch = async url => {
 // Get data set to default
 const rebootData = () => {
     console.log('reboot');
+    /*
     //Waiting reinit
     document.getElementById('waiting').classList.remove('error');
     document.getElementById('waiting').classList.add('unvisible');
@@ -104,6 +107,7 @@ const rebootData = () => {
         document.getElementById('res-pepper').classList.remove(grade);
     })
     document.getElementById('s-pepper').innerHTML = '--';
+    */
 }
 
 // Launch Pepper Index
@@ -113,7 +117,7 @@ const getScores = async url => {
 
     try {
         const responses = await Promise.all([
-            ecoindex(url),
+            ecoindexNcarbon(url),
             googleLH(url, 'performance', 'perf'),
             googleLH(url, 'accessibility', 'acc'),
             googleLH(url, 'best-practices', 'bp'),
@@ -144,15 +148,27 @@ const getPepper = data => {
     formule corrigée : (40A +20B + 20 C + 10 D + 10E ) / 100
     */
     const score = (40*data[0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
+    console.log('score');
+    console.log(score);
     const grade = getPepperGrade(score);
+    console.log(grade);
+    const colors = {'A':'blue', 'B':'green', 'C':'yellow', 'D':'orange', 'E':'red'};
+    console.log()
 
+    const select = document.getElementById('res-pepper');
+
+    select.classList.remove('prez');
+    select.classList.add(colors[grade]);
+    select.querySelector('div').textContent = grade;
+    select.querySelector('p:last-of-type span').textContent = score;
+/*
     document.getElementById('res-pepper').classList.add('done', grade);
-    document.getElementById('s-pepper').innerHTML = score;
+    document.getElementById('s-pepper').innerHTML = score;*/
     console.log('Pepper Index :', score, 'et', grade);
 
     document.getElementById('waiting').classList.add('unvisible');
 
-    setData(data, score, grade);
+    /*setData(data, score, grade);*/
 }
 
 // Saving in BDD
@@ -206,24 +222,36 @@ const checkURL = url =>
     return true;
 }
 
-// Asking EcoIndex from MG
-const ecoindex = async url2Test => {
+// Asking EcoIndex/Carbon from MG
+const ecoindexNcarbon = async url2Test => {
     try {
         const response = await fetch('https://ecoindex.muchas-glacias.com', {
             method: 'POST',
             body: `{"URL":"${url2Test}"}`
         });
-        const { Score } = await response.json();
-        if (mobile)
+        const data = await response.json();
+        let score = parseInt(data.Score);
+        let carbon = parseFloat(data.Carbon);
+        console.log(carbon);
+        /*if (mobile)
             gauge('ei', parseInt(Score));
         else
-            testTube('ei', parseInt(Score));
+            testTube('ei', parseInt(Score));*/
+        pills('ei', score);
+        showCarbon(carbon);
         //specific return for the promise.all
-        return parseInt(Score);
+        return score;
     } catch (err) {
         console.log(err)
         throw err;
     }
+}
+
+const showCarbon = carbon => {
+  select = document.getElementById('res-carbon');
+  select.classList.remove('prez');
+  select.classList.add('green');
+  select.querySelector('p:last-of-type span').textContent = Math.floor(carbon*100)/100;
 }
 
 // Asking LightHouse
@@ -235,10 +263,11 @@ const googleLH = async (url, type, id) => {
         const { lighthouseResult: lhRes } = await response.json();
         const score = parseInt(lhRes.categories[type].score * 100);
 
-        if(mobile)
+        /*if(mobile)
             gauge(id, score);
         else
-            testTube(id, score);
+            testTube(id, score);*/
+        pills(id, score);
         //specific return for the promise.all
         return score;
     } catch (err) {
@@ -260,38 +289,23 @@ const setUpQuery = (url, type) => {
     return `${api}?${searchParams.toString()}`;
 }
 
-// Animating results
-const testTube = (id, score) => {
-    if(score === null) {
-      console.log('error null');
-      return;
-    }
-  
-    const { color, colorHex } = score >= 75 ? {color: 'green', colorHex: '#1CAF9C'} :
-        score >= 25 ? {color: 'orange', colorHex: '#F4AB00'} :
-            { color: 'red', colorHex: '#C8222C'};
-  
-    //Define specific SS rules
-    var ss = document.getElementById('animationSS').sheet;
-    var extendSlime = ((score*9)/100)+4.5;
-    var extendLevel = ((score*9)/100)+3.75;
-  
-    var rules = [
-        '@keyframes slime-'+id.toUpperCase()+' {from {height: 4.5rem;} to {height: '+extendSlime+'rem;}}',
-        '@keyframes level-up-'+id.toUpperCase()+' {from {bottom:3.75rem;} to {bottom: '+extendLevel+'rem}}',
-        '@keyframes mergeColor-'+id.toUpperCase()+' {from {color: $c_white;} to {color: '+colorHex+';}}'
-    ];
-  
-    rules.forEach(item => {
-      ss.insertRule(item, ss.cssRules.length);
-    });
-  
-    //Add Score + Color + Animated
-    if(score<41)
-        document.getElementById('res-'+id).classList.add(color,'mixDiff','animated');
-    else
-        document.getElementById('res-'+id).classList.add(color,'animated');
-    document.getElementById('s-'+id).innerHTML = score;
+//Animating pills
+const pills = (id, score) => {
+  if(score === null) {
+    console.log('error null');
+    return;
+  }
+
+  const color = score >= 75 ? 'green' :
+    score >= 25 ? 'yellow' : 'red';
+
+  //Define specific SS rules
+  let ss = document.getElementById('animationSS').sheet;
+  let extend = 16.5*(score/100)-5.25;
+  ss.insertRule(`@keyframes level-up-${id.toUpperCase()} {from {height:0rem;} to {height: ${extend}rem}}`, ss.cssRules.length);
+
+  document.getElementById('res-'+id).classList.add(color,'animated');
+  document.querySelector(`#res-${id} .score span`).innerHTML = score;
 }
 
 // Animating Mobile results

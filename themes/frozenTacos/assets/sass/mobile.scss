@@ -14,7 +14,8 @@ $mobile-width: 67.5rem;
     
     header {padding: 3.75rem 0;margin-bottom:2rem;
         img {margin:0 auto;padding: 0;display: block;}
-        .version {width:2.55rem;height: 2.5rem;padding-left: 1.2rem;font-size: 1rem;right: 0;top: 0.625rem;line-height: 4.4rem;}
+        .version {font-size:1rem;height:2.5rem;padding-top:.5rem;width:4.4rem;right: 0;top:0.9rem;
+            /*width:2.55rem;height: 2.5rem;padding-left: 1.2rem;font-size: 1rem;right: 0;top: 0.625rem;line-height: 4.4rem;*/}
         .bord{left:0rem; top:1rem; width: 14rem;height:auto;width:16rem;
             a, span {font-size: 0.75rem;margin:.5rem .5rem;}
         }

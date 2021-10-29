@@ -13,17 +13,16 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
 function keyPressed(){
   const { display } = window.getComputedStyle(document.getElementById('res-ei'));
   mobile = display == 'none';
-  /*
+  
 
-    const url2Test = document.getElementById('url2test');
-    if (!!url2Test) {
-        url2Test.addEventListener('keydown', event => {
-            if(event.key === 'Enter') {
-                document.getElementById('url2testButton').dispatchEvent(new Event('click'));
-            }
-        });
-    }
-    */
+  const url2Test = document.getElementById('url2test');
+  if (!!url2Test) {
+      url2Test.addEventListener('keydown', event => {
+          if(event.key === 'Enter') {
+              document.getElementById('url2testButton').dispatchEvent(new Event('click'));
+          }
+      });
+  }
 }
 
 // Toggling Class
@@ -64,7 +63,7 @@ const launch = async url => {
 // Get data set to default
 const rebootData = () => {
     console.log('reboot');
-    /*
+    
     //Waiting reinit
     document.getElementById('waiting').classList.remove('error');
     document.getElementById('waiting').classList.add('unvisible');
@@ -78,8 +77,8 @@ const rebootData = () => {
 
     //delete color & score
     const elts = ['ei', 'perf', 'acc', 'bp', 'seo'];
-    const classes =  ['green', 'orange', 'red', 'mixDiff', 'animated'];
-    const grades = ['done','A','B','C','D','E'];
+    const classes =  ['green', 'yellow', 'red', 'animated'];
+    const grades = ['blue','green','yellow','orange','red'];
   
     // EI & LH
     elts.forEach(elt => {
@@ -90,7 +89,7 @@ const rebootData = () => {
         classes.forEach(css => {
             document.getElementById(resItem).classList.remove(css);
         });
-        document.getElementById(sItem).innerHTML = '--';
+        document.getElementById(sItem).innerHTML = '- -';
   
         if(mobile) {
             document.getElementById(resItem).getElementsByClassName('slime')[0].style.width = '0';
@@ -106,8 +105,14 @@ const rebootData = () => {
     grades.forEach(grade => {
         document.getElementById('res-pepper').classList.remove(grade);
     })
-    document.getElementById('s-pepper').innerHTML = '--';
-    */
+    document.getElementById('res-pepper').classList.add('prez');
+    document.querySelector('#res-pepper p:last-of-type span').innerHTML = '- -';
+
+    //Carbon Index
+    document.getElementById('res-carbon').classList.remove('blueIce');
+    document.getElementById('res-carbon').classList.add('prez');
+    document.querySelector('#res-carbon p:last-of-type span').innerHTML = '- -';
+  
 }
 
 // Launch Pepper Index
@@ -246,7 +251,7 @@ const ecoindexNcarbon = async url2Test => {
 const showCarbon = carbon => {
   select = document.getElementById('res-carbon');
   select.classList.remove('prez');
-  select.classList.add('green');
+  select.classList.add('blueIce');
   select.querySelector('p:last-of-type span').textContent = Math.floor(carbon*100)/100;
 }
 
@@ -300,7 +305,7 @@ const pills = (id, score) => {
   ss.insertRule(`@keyframes level-up-${id.toUpperCase()} {from {height:0rem;} to {height: ${extend}rem}}`, ss.cssRules.length);
 
   document.getElementById('res-'+id).classList.add(color,'animated');
-  document.querySelector(`#res-${id} .score span`).innerHTML = score;
+  document.getElementById('s-'+id).innerHTML = score;
 }
 
 // Animating Mobile results
@@ -309,7 +314,7 @@ const gauge = (id, score) => {
       console.log('error null');
     else{
         color = score >= 75 ? 'green' :
-            score >= 25 ? 'orange' :
+            score >= 25 ? 'yellow' :
                 'red';
   
         //Add Score + Color + Animated

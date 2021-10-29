@@ -36,27 +36,27 @@ $mobile-width: 67.5rem;
     .results {justify-content: space-around;flex-wrap:wrap;
         .pill, .line {display:none;}
         .progress {width: 100%;margin-bottom:1.5rem;flex-basis:100%;
-            .title {font-size: 1.5rem;font-weight: bold;float: left;padding-bottom: 0.5rem;}
+            .title {font-size: 1rem;font-weight: bold;float: left;padding-bottom: 0.5rem;}
             .score {float: right;font-size:1.5rem;padding-bottom: 0.5rem;
-                span {font-size: 1rem;}
+                span {font-size: .75rem;}
             }
-            .gauge {background-color: $c_yellow;clear: both;}
+            .gauge {background-color: $c_greenDarker;clear: both;}
             .gauge, .slime {width: 100%;height: 1rem;border-radius: 0.5rem;
             }
         
             &.red {
-                .score strong {color: $c_Rred;}
-                .slime {background-color: $c_Rred;}
+                .score strong {color: $c_redRes;}
+                .slime {background-color: $c_redRes}
             }
         
-            &.orange {
-                .score strong {color: $c_Rorange;}
-                .slime {background-color: $c_Rorange;}
+            &.yellow {
+                .score strong {color: $c_yellowRes;}
+                .slime {background-color: $c_yellowRes;}
             }
         
             &.green {
-                .score strong {color: $c_Rgreen;}
-                .slime {background-color: $c_Rgreen}
+                .score strong {color: $c_greenRes;}
+                .slime {background-color: $c_greenRes;}
             }
     
         }

@@ -65,7 +65,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
 }
 
 #waiting {margin:3.75rem auto;width: auto;display: flex;justify-content: center;align-items: center;font-size: 1.25rem;
-    &.error {color: $c_Rred;
+    &.error {color: $c_redRes;
         .material-icons-outlined {animation: none;}
     }
     .material-icons-outlined {font-size: 2rem;margin-left:1.5rem;animation: 1.5s linear 0s infinite normal none loading;}
@@ -147,7 +147,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
         &.yellow {background-color: $c_yellowRes;div{color: $c_yellowRes;}}
         &.orange {background-color: $c_orangeRes;div{color: $c_orangeRes;}}
         &.red {background-color: $c_redRes;div{color: $c_redRes;}}
-
+        &.blueIce {background-color: $c_blueIce;div{color: $c_blueIce;}}
     }
 }
 
@@ -155,7 +155,8 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     span:nth-child(odd) {text-decoration: underline;cursor: pointer;}
 }
 
-.content {padding-top:2rem;border-top:0.25rem dashed $c_blueDark;
+.content {padding-top:2rem;border-top:0.25rem dashed $c_greenLight;
+    a {color:$c_greenLight;}
     img {max-width: 100%;}
 }
 

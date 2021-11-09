@@ -9,11 +9,10 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
     keyPressed();
 }
 
-//Check Enter
+//When loaded | Check Enter | Bind
 function keyPressed(){
   const { display } = window.getComputedStyle(document.getElementById('res-ei'));
   mobile = display == 'none';
-  
 
   const url2Test = document.getElementById('url2test');
   if (!!url2Test) {
@@ -22,6 +21,28 @@ function keyPressed(){
               document.getElementById('url2testButton').dispatchEvent(new Event('click'));
           }
       });
+  }
+
+  if(document.querySelector('.mg-score')!=null){
+    getData();
+  }
+}
+
+async function getData(){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const id = urlParams.get('id')
+
+  try {
+      const response = await fetch(`https://api.muchas-glacias.com/results-logs/${id}`, {
+          method: 'GET',
+      });
+      const res = await response.json();
+      console.log(res);
+      populate(res, id);
+  } catch (err) {
+      console.log(err)
+      throw err;
   }
 }
 
@@ -152,7 +173,7 @@ const getPepper = data => {
     repartition peperdindex  : 15 / 15 / 20 / 20 / 30
     formule corrigée : (40A +20B + 20 C + 10 D + 10E ) / 100
     */
-    const score = (40*data[0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
+    const score = (40*data[0][0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
     console.log('score');
     console.log(score);
     const grade = getPepperGrade(score);
@@ -170,7 +191,7 @@ const getPepper = data => {
     console.log('Pepper Index :', score, 'et', grade);
     document.getElementById('waiting').classList.add('unvisible');
 
-    /*setData(data, score, grade);*/
+    setData(data, score, grade);
 }
 
 // Saving in BDD
@@ -178,7 +199,7 @@ const setData = async (data, piScore, piGrade) => {
     try {
         const response = await fetch('https://api.muchas-glacias.com/results-logs', {
             method: 'POST',
-            body: `{"eco-index":${data[0]}, "lighthouse-perf":${data[1]}, "lighthouse-accessibility":${data[2]}, "lighthouse-best-practices":${data[3]}, "lighthouse-seo":${data[4]}, "url":"${data[5]}", "pepper-index":"${piGrade}", "pepper-index-score":${piScore}}`
+            body: `{"eco-index":${data[0][0]}, "carbon":${data[0][1]}, "lighthouse-perf":${data[1]}, "lighthouse-accessibility":${data[2]}, "lighthouse-best-practices":${data[3]}, "lighthouse-seo":${data[4]}, "url":"${data[5]}", "pepper-index":"${piGrade}", "pepper-index-score":${piScore}}`
         });
         const { id } = await response.json();
         showLink(id);
@@ -241,7 +262,7 @@ const ecoindexNcarbon = async url2Test => {
           pills('ei', score);
         showCarbon(carbon);
         //specific return for the promise.all
-        return score;
+        return [score,Math.floor(carbon*100)/100];
     } catch (err) {
         console.log(err)
         throw err;

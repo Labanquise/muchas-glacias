@@ -13,7 +13,9 @@ header, #content section {width: 63.75rem;margin:auto;}
 #content {min-height: calc(100vh - 18.375rem);}
 #content section {margin-bottom:5rem;}
 
-.hidden {display: none;}
+#link2Share {color:$c_white;text-decoration: none;line-height: 2rem;display: flex;justify-content:space-around;align-items: center;background-color: $c_blueDark;width: 16rem;margin:0 auto;padding:.5rem;border-radius: 1.5rem;}
+
+.hidden {display: none!important;}
 .unvisible {visibility: hidden;}
 
 header {position: relative;height: 10.375rem;margin-bottom: 4.75rem;}

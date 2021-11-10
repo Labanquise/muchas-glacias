@@ -11,8 +11,11 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
 
 //When loaded | Check Enter | Bind
 function keyPressed(){
-  const { display } = window.getComputedStyle(document.getElementById('res-ei'));
-  mobile = display == 'none';
+  if(document.getElementById('res-ei')!=null){
+    const { display } = window.getComputedStyle(document.getElementById('res-ei'));
+    mobile = display == 'none';
+  }
+  
 
   const url2Test = document.getElementById('url2test');
   if (!!url2Test) {
@@ -23,11 +26,27 @@ function keyPressed(){
       });
   }
 
+  //Getting previous data
   if(document.querySelector('.mg-score')!=null){
     getData();
   }
+
+  //Create New StyleSheet
+  if(!mobile){
+    const styleEl = document.createElement('style');
+    styleEl.setAttribute('id', 'animationSS');
+    document.head.appendChild(styleEl);
+}
 }
 
+const getDate = (date,ts) => {
+  date = date.toString();
+  const hour = new Date(ts*1000).toISOString().substr(11, 8);
+  const readableDate = date.substring(6,8)+'/'+date.substring(4,6)+'/'+date.substring(0,4)+' à '+hour;
+  return readableDate;
+}
+
+//Getting Previous Data
 async function getData(){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -39,11 +58,30 @@ async function getData(){
       });
       const res = await response.json();
       console.log(res);
-      populate(res, id);
+      populate(res);
   } catch (err) {
       console.log(err)
       throw err;
   }
+}
+
+//Populate for Score Page
+const populate = res => {
+  const date = getDate(res['datehour'], res['timestamp']);
+  document.getElementById('url').innerHTML = res['url'];
+  document.getElementById('date').innerHTML = date;
+
+  showCarbon(res['carbon']);
+  getPepper(res['pepper-index-score']);
+  let score = [['ei',res['eco-index']],['perf',res['lighthouse-perf']],['acc',res['lighthouse-accessibility']],['bp',res['lighthouse-best-practices']],['seo',res['lighthouse-seo']]];
+
+  score.forEach(item=>{
+    console.log(item);
+    if(mobile)
+      gauge(item[0], item[1]);
+    else
+      pills(item[0], item[1]);
+  });
 }
 
 // Toggling Class
@@ -59,13 +97,6 @@ const launch = async url => {
       reboot = true;
     else
       rebootData();
-  
-    //Create New StyleSheet
-    if(!mobile){
-        const styleEl = document.createElement('style');
-        styleEl.setAttribute('id', 'animationSS');
-        document.head.appendChild(styleEl);
-    }
   
     //preformating url
     let reg = /(http:\/\/|https:\/\/)/;
@@ -173,13 +204,18 @@ const getPepper = data => {
     repartition peperdindex  : 15 / 15 / 20 / 20 / 30
     formule corrigée : (40A +20B + 20 C + 10 D + 10E ) / 100
     */
-    const score = (40*data[0][0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
-    console.log('score');
-    console.log(score);
+
+    let score = 0;
+    if(typeof(data)=='number'){
+      score = data;
+    }else{
+      score = (40*data[0][0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
+      console.log('score');
+      console.log(score);
+    }
     const grade = getPepperGrade(score);
     console.log(grade);
     const colors = {'A':'blue', 'B':'green', 'C':'yellow', 'D':'orange', 'E':'red'};
-    console.log()
 
     const select = document.getElementById('res-pepper');
 
@@ -189,9 +225,11 @@ const getPepper = data => {
     select.querySelector('p:last-of-type span').textContent = score;
 
     console.log('Pepper Index :', score, 'et', grade);
-    document.getElementById('waiting').classList.add('unvisible');
-
-    setData(data, score, grade);
+    
+    if(typeof(data)!='number'){
+      document.getElementById('waiting').classList.add('unvisible');
+      setData(data, score, grade);
+    }
 }
 
 // Saving in BDD

@@ -74,7 +74,7 @@ Nous avons repris le principe de notation de l'ecoscore qui informe sur l’impa
 
 Pepper Index a pour but d'informer sur la performance et l'impact environnemental des sites internet.
 
-![](/img/pepperindex.webp)
+![](img/pepperindex.webp)
 
 ## La formule actuelle est : 
 ```

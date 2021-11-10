@@ -9,19 +9,79 @@ if (document.readyState === 'loading') {  // Loading hasn't finished yet
     keyPressed();
 }
 
-//Check Enter
+//When loaded | Check Enter | Bind
 function keyPressed(){
-  const { display } = window.getComputedStyle(document.getElementById('res-ei'));
-  mobile = display == 'none';
+  if(document.getElementById('res-ei')!=null){
+    const { display } = window.getComputedStyle(document.getElementById('res-ei'));
+    mobile = display == 'none';
+  }
+  
 
-    const url2Test = document.getElementById('url2test');
-    if (!!url2Test) {
-        url2Test.addEventListener('keydown', event => {
-            if(event.key === 'Enter') {
-                document.getElementById('url2testButton').dispatchEvent(new Event('click'));
-            }
-        });
-    }
+  const url2Test = document.getElementById('url2test');
+  if (!!url2Test) {
+      url2Test.addEventListener('keydown', event => {
+          if(event.key === 'Enter') {
+              document.getElementById('url2testButton').dispatchEvent(new Event('click'));
+          }
+      });
+  }
+
+  //Getting previous data
+  if(document.querySelector('.mg-score')!=null){
+    getData();
+  }
+
+  //Create New StyleSheet
+  if(!mobile){
+    const styleEl = document.createElement('style');
+    styleEl.setAttribute('id', 'animationSS');
+    document.head.appendChild(styleEl);
+}
+}
+
+const getDate = (date,ts) => {
+  date = date.toString();
+  const hour = new Date(ts*1000).toISOString().substr(11, 8);
+  const readableDate = date.substring(6,8)+'/'+date.substring(4,6)+'/'+date.substring(0,4)+' à '+hour;
+  return readableDate;
+}
+
+//Getting Previous Data
+async function getData(){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const id = urlParams.get('id')
+
+  try {
+      const response = await fetch(`https://api.muchas-glacias.com/results-logs/${id}`, {
+          method: 'GET',
+      });
+      const res = await response.json();
+      console.log(res);
+      populate(res);
+  } catch (err) {
+      console.log(err)
+      throw err;
+  }
+}
+
+//Populate for Score Page
+const populate = res => {
+  const date = getDate(res['datehour'], res['timestamp']);
+  document.getElementById('url').innerHTML = res['url'];
+  document.getElementById('date').innerHTML = date;
+
+  showCarbon(res['carbon']);
+  getPepper(res['pepper-index-score']);
+  let score = [['ei',res['eco-index']],['perf',res['lighthouse-perf']],['acc',res['lighthouse-accessibility']],['bp',res['lighthouse-best-practices']],['seo',res['lighthouse-seo']]];
+
+  score.forEach(item=>{
+    console.log(item);
+    if(mobile)
+      gauge(item[0], item[1]);
+    else
+      pills(item[0], item[1]);
+  });
 }
 
 // Toggling Class
@@ -37,13 +97,6 @@ const launch = async url => {
       reboot = true;
     else
       rebootData();
-  
-    //Create New StyleSheet
-    if(!mobile){
-        const styleEl = document.createElement('style');
-        styleEl.setAttribute('id', 'animationSS');
-        document.head.appendChild(styleEl);
-    }
   
     //preformating url
     let reg = /(http:\/\/|https:\/\/)/;
@@ -62,6 +115,7 @@ const launch = async url => {
 // Get data set to default
 const rebootData = () => {
     console.log('reboot');
+    
     //Waiting reinit
     document.getElementById('waiting').classList.remove('error');
     document.getElementById('waiting').classList.add('unvisible');
@@ -75,8 +129,8 @@ const rebootData = () => {
 
     //delete color & score
     const elts = ['ei', 'perf', 'acc', 'bp', 'seo'];
-    const classes =  ['green', 'orange', 'red', 'mixDiff', 'animated'];
-    const grades = ['done','A','B','C','D','E'];
+    const classes =  ['green', 'yellow', 'red', 'animated'];
+    const grades = ['blue','green','yellow','orange','red'];
   
     // EI & LH
     elts.forEach(elt => {
@@ -87,7 +141,7 @@ const rebootData = () => {
         classes.forEach(css => {
             document.getElementById(resItem).classList.remove(css);
         });
-        document.getElementById(sItem).innerHTML = '--';
+        document.getElementById(sItem).innerHTML = '- -';
   
         if(mobile) {
             document.getElementById(resItem).getElementsByClassName('slime')[0].style.width = '0';
@@ -103,7 +157,14 @@ const rebootData = () => {
     grades.forEach(grade => {
         document.getElementById('res-pepper').classList.remove(grade);
     })
-    document.getElementById('s-pepper').innerHTML = '--';
+    document.getElementById('res-pepper').classList.add('prez');
+    document.querySelector('#res-pepper p:last-of-type span').innerHTML = '- -';
+
+    //Carbon Index
+    document.getElementById('res-carbon').classList.remove('blueIce');
+    document.getElementById('res-carbon').classList.add('prez');
+    document.querySelector('#res-carbon p:last-of-type span').innerHTML = '- -';
+  
 }
 
 // Launch Pepper Index
@@ -113,7 +174,7 @@ const getScores = async url => {
 
     try {
         const responses = await Promise.all([
-            ecoindex(url),
+            ecoindexNcarbon(url),
             googleLH(url, 'performance', 'perf'),
             googleLH(url, 'accessibility', 'acc'),
             googleLH(url, 'best-practices', 'bp'),
@@ -143,16 +204,32 @@ const getPepper = data => {
     repartition peperdindex  : 15 / 15 / 20 / 20 / 30
     formule corrigée : (40A +20B + 20 C + 10 D + 10E ) / 100
     */
-    const score = (40*data[0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
+
+    let score = 0;
+    if(typeof(data)=='number'){
+      score = data;
+    }else{
+      score = (40*data[0][0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
+      console.log('score');
+      console.log(score);
+    }
     const grade = getPepperGrade(score);
+    console.log(grade);
+    const colors = {'A':'blue', 'B':'green', 'C':'yellow', 'D':'orange', 'E':'red'};
 
-    document.getElementById('res-pepper').classList.add('done', grade);
-    document.getElementById('s-pepper').innerHTML = score;
+    const select = document.getElementById('res-pepper');
+
+    select.classList.remove('prez');
+    select.classList.add(colors[grade]);
+    select.querySelector('div').textContent = grade;
+    select.querySelector('p:last-of-type span').textContent = score;
+
     console.log('Pepper Index :', score, 'et', grade);
-
-    document.getElementById('waiting').classList.add('unvisible');
-
-    setData(data, score, grade);
+    
+    if(typeof(data)!='number'){
+      document.getElementById('waiting').classList.add('unvisible');
+      setData(data, score, grade);
+    }
 }
 
 // Saving in BDD
@@ -160,7 +237,7 @@ const setData = async (data, piScore, piGrade) => {
     try {
         const response = await fetch('https://api.muchas-glacias.com/results-logs', {
             method: 'POST',
-            body: `{"eco-index":${data[0]}, "lighthouse-perf":${data[1]}, "lighthouse-accessibility":${data[2]}, "lighthouse-best-practices":${data[3]}, "lighthouse-seo":${data[4]}, "url":"${data[5]}", "pepper-index":"${piGrade}", "pepper-index-score":${piScore}}`
+            body: `{"eco-index":${data[0][0]}, "carbon":${data[0][1]}, "lighthouse-perf":${data[1]}, "lighthouse-accessibility":${data[2]}, "lighthouse-best-practices":${data[3]}, "lighthouse-seo":${data[4]}, "url":"${data[5]}", "pepper-index":"${piGrade}", "pepper-index-score":${piScore}}`
         });
         const { id } = await response.json();
         showLink(id);
@@ -206,24 +283,35 @@ const checkURL = url =>
     return true;
 }
 
-// Asking EcoIndex from MG
-const ecoindex = async url2Test => {
+// Asking EcoIndex/Carbon from MG
+const ecoindexNcarbon = async url2Test => {
     try {
         const response = await fetch('https://ecoindex.muchas-glacias.com', {
             method: 'POST',
             body: `{"URL":"${url2Test}"}`
         });
-        const { Score } = await response.json();
+        const data = await response.json();
+        let score = parseInt(data.Score);
+        let carbon = parseFloat(data.Carbon);
+        console.log(carbon);
         if (mobile)
-            gauge('ei', parseInt(Score));
+          gauge('ei', score);
         else
-            testTube('ei', parseInt(Score));
+          pills('ei', score);
+        showCarbon(carbon);
         //specific return for the promise.all
-        return parseInt(Score);
+        return [score,Math.floor(carbon*100)/100];
     } catch (err) {
         console.log(err)
         throw err;
     }
+}
+
+const showCarbon = carbon => {
+  select = document.getElementById('res-carbon');
+  select.classList.remove('prez');
+  select.classList.add('blueIce');
+  select.querySelector('p:last-of-type span').textContent = Math.floor(carbon*100)/100;
 }
 
 // Asking LightHouse
@@ -236,9 +324,9 @@ const googleLH = async (url, type, id) => {
         const score = parseInt(lhRes.categories[type].score * 100);
 
         if(mobile)
-            gauge(id, score);
+          gauge(id, score);
         else
-            testTube(id, score);
+          pills(id, score);
         //specific return for the promise.all
         return score;
     } catch (err) {
@@ -260,38 +348,23 @@ const setUpQuery = (url, type) => {
     return `${api}?${searchParams.toString()}`;
 }
 
-// Animating results
-const testTube = (id, score) => {
-    if(score === null) {
-      console.log('error null');
-      return;
-    }
-  
-    const { color, colorHex } = score >= 75 ? {color: 'green', colorHex: '#1CAF9C'} :
-        score >= 25 ? {color: 'orange', colorHex: '#F4AB00'} :
-            { color: 'red', colorHex: '#C8222C'};
-  
-    //Define specific SS rules
-    var ss = document.getElementById('animationSS').sheet;
-    var extendSlime = ((score*9)/100)+4.5;
-    var extendLevel = ((score*9)/100)+3.75;
-  
-    var rules = [
-        '@keyframes slime-'+id.toUpperCase()+' {from {height: 4.5rem;} to {height: '+extendSlime+'rem;}}',
-        '@keyframes level-up-'+id.toUpperCase()+' {from {bottom:3.75rem;} to {bottom: '+extendLevel+'rem}}',
-        '@keyframes mergeColor-'+id.toUpperCase()+' {from {color: $c_white;} to {color: '+colorHex+';}}'
-    ];
-  
-    rules.forEach(item => {
-      ss.insertRule(item, ss.cssRules.length);
-    });
-  
-    //Add Score + Color + Animated
-    if(score<41)
-        document.getElementById('res-'+id).classList.add(color,'mixDiff','animated');
-    else
-        document.getElementById('res-'+id).classList.add(color,'animated');
-    document.getElementById('s-'+id).innerHTML = score;
+//Animating pills
+const pills = (id, score) => {
+  if(score === null) {
+    console.log('error null');
+    return;
+  }
+
+  const color = score >= 75 ? 'green' :
+    score >= 25 ? 'yellow' : 'red';
+
+  //Define specific SS rules
+  let ss = document.getElementById('animationSS').sheet;
+  let extend = 16.5*(score/100)-5.25;
+  ss.insertRule(`@keyframes level-up-${id.toUpperCase()} {from {height:0rem;} to {height: ${extend}rem}}`, ss.cssRules.length);
+
+  document.getElementById('res-'+id).classList.add(color,'animated');
+  document.getElementById('s-'+id).innerHTML = score;
 }
 
 // Animating Mobile results
@@ -300,7 +373,7 @@ const gauge = (id, score) => {
       console.log('error null');
     else{
         color = score >= 75 ? 'green' :
-            score >= 25 ? 'orange' :
+            score >= 25 ? 'yellow' :
                 'red';
   
         //Add Score + Color + Animated

@@ -7,6 +7,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
   title = "Muchas Glacias - Testeur de site web écologique et accessible"
   description = "Muchas Glacias est développé par LABANQUI.SE.\nTesteur de site web sur l'écologie et l'accessibilité"
   images = ["/img/pepper-index.png"]
+  env = 'dev'
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

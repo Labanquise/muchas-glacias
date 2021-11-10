@@ -14,7 +14,8 @@ $mobile-width: 67.5rem;
     
     header {padding: 3.75rem 0;margin-bottom:2rem;
         img {margin:0 auto;padding: 0;display: block;}
-        .version {width:2.55rem;height: 2.5rem;padding-left: 1.2rem;font-size: 1rem;right: 0;top: 0.625rem;line-height: 4.4rem;}
+        .version {font-size:1rem;height:2.5rem;padding-top:.5rem;width:4.4rem;right: 0;top:0.9rem;
+            /*width:2.55rem;height: 2.5rem;padding-left: 1.2rem;font-size: 1rem;right: 0;top: 0.625rem;line-height: 4.4rem;*/}
         .bord{left:0rem; top:1rem; width: 14rem;height:auto;width:16rem;
             a, span {font-size: 0.75rem;margin:.5rem .5rem;}
         }
@@ -33,25 +34,32 @@ $mobile-width: 67.5rem;
         .material-icons-outlined {font-size: 2rem;animation: 1.5s linear 0s infinite normal none loading;}
     }
 
-    .resultats {width:100%;
-        .pill {display: none;}
-        .progress{width: 100%;margin-bottom:1.5rem;
-            .title {font-size: 1.25rem;font-weight: bold;float: left;padding-bottom: 0.5rem;}
-            .score {float: right;font-size:1.25rem;padding-bottom: 0.5rem;
-                span {font-size: 0.625rem;}
+    .results {justify-content: space-around;flex-wrap:wrap;
+        .pill, .line {display:none;}
+        .progress {width: 100%;margin-bottom:1.5rem;flex-basis:100%;
+            .title {font-size: 1rem;font-weight: bold;float: left;padding-bottom: 0.5rem;}
+            .score {float: right;font-size:1.5rem;padding-bottom: 0.5rem;
+                span {font-size: .75rem;}
             }
-            .gauge {background-color: $c_yellow;clear: both;}
-            .gauge, .slime {width: 100%;height: 0.5rem;border-radius: 0.25rem;
+            .gauge {background-color: $c_greenDarker;clear: both;}
+            .gauge, .slime {width: 100%;height: 1rem;border-radius: 0.5rem;
             }
-        }
-        .bigPill {
-            width: 100%;margin-top: 1.5rem;
-            .index {
-                font-size: 1rem;
-                span {font-size: 0.8rem;}
+        
+            &.red {
+                .score strong {color: $c_redRes;}
+                .slime {background-color: $c_redRes}
             }
-            .score {font-size: 1rem;}
-            #link2Share {font-size: 2rem;} 
+        
+            &.yellow {
+                .score strong {color: $c_yellowRes;}
+                .slime {background-color: $c_yellowRes;}
+            }
+        
+            &.green {
+                .score strong {color: $c_greenRes;}
+                .slime {background-color: $c_greenRes;}
+            }
+    
         }
     }
 

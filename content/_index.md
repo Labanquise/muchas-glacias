@@ -2,7 +2,7 @@
 title : "Muchas Glacias - Testeur de site web écologique et accessible"
 ---
 
-## Bêta 
+## Bêta 3 - B3TA
 
 Ce testeur de site, Muchas Glacias, est dans une première version qualifiée généreusement de  Bêta.
 Les formules et les modes de calcul évolueront en fonction de notre veille et de nos propres développements.
@@ -74,7 +74,7 @@ Nous avons repris le principe de notation de l'ecoscore qui informe sur l’impa
 
 Pepper Index a pour but d'informer sur la performance et l'impact environnemental des sites internet.
 
-![](/img/pepperIndex-grade.png)
+![](img/pepperindex.webp)
 
 ## La formule actuelle est : 
 ```
@@ -91,6 +91,14 @@ Pepper Index a pour but d'informer sur la performance et l'impact environnementa
  - **C** : 70 à 50
  - **D** : 50 à 30
  - **E** : 30 à 0
+
+## Carbon Index
+Internet consomme beaucoup d'électricité. 416,2 TWh par an pour être précis.
+Pour vous donner une idée, c'est plus que l'ensemble du Royaume-Uni.
+
+Des centres de données aux réseaux de transmission en passant par les appareils que nous tenons entre nos mains, tout cela consomme de l'électricité et produit à son tour des émissions de carbone.
+
+*Plus de détails ici :* <a href="https://www.websitecarbon.com/" target="_blank" title="Lien de websitecarbon" rel="external nofollow noreferrer">https://www.websitecarbon.com/</a>
 
 |||||
 ## Pourquoi tester ?

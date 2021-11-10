@@ -26,7 +26,6 @@ async function getData(){
 
 // Populate data
 const populate = (res,id) => {
-
     const date = getDate(res['datehour'], res['timestamp']);
     document.getElementById('url').innerHTML = res['url'];
     document.getElementById('date').innerHTML = date;
@@ -41,7 +40,6 @@ const populate = (res,id) => {
     document.getElementById('res-pepper').classList.add('done', res['pepper-index']);
     document.getElementById('s-pepper').innerHTML = res['pepper-index-score'];
     document.getElementById('link2Share').setAttribute('href', `/score/?id=${id}`);
-
 }
 
 const getDate = (date,ts) => {

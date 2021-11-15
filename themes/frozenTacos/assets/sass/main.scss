@@ -24,7 +24,7 @@ header .version {position:absolute;transform: rotate(-90deg);right:-1.4rem;top: 
 
 /* Buttons sizes and dyslexia */
 .bord{ height: 2rem; display: flex; position: absolute; width: 20.5rem;top:2rem;right: 5rem;
-    a{font-size : 1rem; margin: auto; cursor: pointer; color: $c_white;}
+    button {font-size : 1rem; margin: auto; cursor: pointer; color: $c_white;background: none;border: none;}
     span{color:$c_kaki; margin: auto;}
 }
 
@@ -182,7 +182,7 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
 /* Cookies */
 aside.cookies {height:4.125rem;background-color: $c_kaki;display: flex;align-items:center; justify-content: center; position:fixed; bottom: 0; width: 100%; z-index: 4;
     div {color:$c_white;font-size: 0.8rem; }
-    a {cursor: pointer;width:8.75rem;height: 2.25rem;border-radius: 0.5rem;background-color: $c_white;text-align: center;text-decoration: none;line-height: 2.25rem;color: $c_blueDark;margin-left:1rem;}
+    button {cursor: pointer;width:8.75rem;height: 2.25rem;border:none;border-radius: 0.5rem;background-color: $c_white;text-align: center;line-height: 2.25rem;color: $c_blueDark;margin-left:1rem;}
 }
 
 // Change the sizes

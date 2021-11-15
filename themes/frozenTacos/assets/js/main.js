@@ -76,7 +76,6 @@ const populate = res => {
   let score = [['ei',res['eco-index']],['perf',res['lighthouse-perf']],['acc',res['lighthouse-accessibility']],['bp',res['lighthouse-best-practices']],['seo',res['lighthouse-seo']]];
 
   score.forEach(item=>{
-    console.log(item);
     if(mobile)
       gauge(item[0], item[1]);
     else
@@ -150,8 +149,13 @@ const rebootData = () => {
     });
   
     //delete ss
-    if (!mobile)
-      document.getElementById('animationSS').remove();
+    if (!mobile && document.getElementById('animationSS') != null){
+      let ss = document.getElementById('animationSS').sheet;
+      for (let index = 0; index < ss.cssRules.length; index++) {
+        ss.deleteRule(index);
+        
+      }
+    }
   
     // Pepper Index
     grades.forEach(grade => {
@@ -210,11 +214,8 @@ const getPepper = data => {
       score = data;
     }else{
       score = (40*data[0][0]+20*data[1]+20*data[2]+10*data[3]+10*data[4])/100;
-      console.log('score');
-      console.log(score);
     }
     const grade = getPepperGrade(score);
-    console.log(grade);
     const colors = {'A':'blue', 'B':'green', 'C':'yellow', 'D':'orange', 'E':'red'};
 
     const select = document.getElementById('res-pepper');

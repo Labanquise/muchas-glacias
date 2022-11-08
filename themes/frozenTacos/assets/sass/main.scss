@@ -14,7 +14,7 @@ header, #content section {width: 63.75rem;margin:auto;}
 #content section {margin-bottom:5rem;}
 
 #link2Share {color:$c_white;text-decoration: none;line-height: 2rem;display: flex;justify-content:space-around;align-items: center;background-color: $c_blueDark;width: 16rem;margin:0 auto;padding:.5rem;border-radius: 1.5rem;}
-
+.share_buttons{display: flex;justify-content: center;}
 .hidden {display: none!important;}
 .unvisible {visibility: hidden;}
 
@@ -47,6 +47,8 @@ h1 {font-size: 4.5rem;margin:0 0 1rem 0;}
     input[type=url] {width: 77%;}
     button {width: 8%;cursor: pointer;font-size: 3rem;}
 }
+.share_buttons{display:flex; justify-content: center;}
+.share_buttons button{margin:0 1.25rem; background-color: #293d3c;border:none;cursor: pointer;color:#fff; text-decoration: underline;}
 
 /*Score*/
 #score {position:absolute;top:32rem;right:0;width:13rem;height:4rem;z-index: 10;

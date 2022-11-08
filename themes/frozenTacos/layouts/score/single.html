@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="mg-score">
-    
-    <h1>Vos résultats pour<br><span id="url"></span></h1> 
+
+    <h1>Vos résultats pour<br><span id="url"></span></h1>
     <h2>Le <span id="date"></span></h2>
 
     <div class="results">
@@ -128,6 +128,19 @@
             <p class="exp">Estimation des rejets de CO2 du site</p>
             <p><span>1.33</span><br>grammes</p>
         </div>
+    </div>
+    <div class="share_buttons">
+        <button class="button share_linkedin">
+            <img src="/img/linkedin.webp" width="36" height="36" alt="partagez sur LinkedIn" loading="lazy">
+        </button>
+        <button class="button share_twitter">
+            <img src="/img/twitter.webp" width="36" height="36" alt="partagez sur Twitter" loading="lazy">
+        </button>
+        <button class="button share_facebook">
+            <img src="/img/facebook.webp" width="36" height="36" alt="partagez sur facebook" loading="lazy">
+        </button>
+
+        <button id="copy" type="button">Copier dans le presse papier</button>
     </div>
     <div class="links">
         <span onclick="contentToggle('moreInfo','whyTest')">Comprendre mes résultats</span><span>&nbsp;|&nbsp;</span><span onclick="contentToggle('whyTest','moreInfo')">Pourquoi Tester ?</span>

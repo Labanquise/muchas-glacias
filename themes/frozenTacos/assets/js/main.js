@@ -15,7 +15,7 @@ function keyPressed(){
     const { display } = window.getComputedStyle(document.getElementById('res-ei'));
     mobile = display == 'none';
   }
-  
+
 
   const url2Test = document.getElementById('url2test');
   if (!!url2Test) {
@@ -96,12 +96,12 @@ const launch = async url => {
       reboot = true;
     else
       rebootData();
-  
+
     //preformating url
     let reg = /(http:\/\/|https:\/\/)/;
     if(!reg.test(url))
       url = 'https://'+url;
-  
+
     //Verify if the URL is valid
     if(!checkURL(url))
       alert('Veuillez entrer une URL valide')
@@ -114,7 +114,7 @@ const launch = async url => {
 // Get data set to default
 const rebootData = () => {
     console.log('reboot');
-    
+
     //Waiting reinit
     document.getElementById('waiting').classList.remove('error');
     document.getElementById('waiting').classList.add('unvisible');
@@ -130,33 +130,33 @@ const rebootData = () => {
     const elts = ['ei', 'perf', 'acc', 'bp', 'seo'];
     const classes =  ['green', 'yellow', 'red', 'animated'];
     const grades = ['blue','green','yellow','orange','red'];
-  
+
     // EI & LH
     elts.forEach(elt => {
         const suffix = mobile ? 'M' : '';
         const resItem = `res${suffix}-${elt}`;
         const sItem = `s${suffix}-${elt}`;
-  
+
         classes.forEach(css => {
             document.getElementById(resItem).classList.remove(css);
         });
         document.getElementById(sItem).innerHTML = '- -';
-  
+
         if(mobile) {
             document.getElementById(resItem).getElementsByClassName('slime')[0].style.width = '0';
             document.getElementById(resItem).classList.add('hidden');
         }
     });
-  
+
     //delete ss
     if (!mobile && document.getElementById('animationSS') != null){
       let ss = document.getElementById('animationSS').sheet;
       for (let index = 0; index < ss.cssRules.length; index++) {
         ss.deleteRule(index);
-        
+
       }
     }
-  
+
     // Pepper Index
     grades.forEach(grade => {
         document.getElementById('res-pepper').classList.remove(grade);
@@ -168,7 +168,7 @@ const rebootData = () => {
     document.getElementById('res-carbon').classList.remove('blueIce');
     document.getElementById('res-carbon').classList.add('prez');
     document.querySelector('#res-carbon p:last-of-type span').innerHTML = '- -';
-  
+
 }
 
 // Launch Pepper Index
@@ -226,7 +226,7 @@ const getPepper = data => {
     select.querySelector('p:last-of-type span').textContent = score;
 
     console.log('Pepper Index :', score, 'et', grade);
-    
+
     if(typeof(data)!='number'){
       document.getElementById('waiting').classList.add('unvisible');
       setData(data, score, grade);
@@ -259,7 +259,7 @@ const getPepperGrade = score => {
     if(score > 100 || score < 0) {
         return 'INVALID SCORE';
     }
-  
+
     const grades = [
         {max: 85, grade: 'A'},
         {max: 70, grade: 'B'},
@@ -267,7 +267,7 @@ const getPepperGrade = score => {
         {max: 30, grade: 'D'},
     ];
     const index = grades.findIndex(({max}) => score >= max);
-  
+
     return index !== -1 ? grades[index].grade : 'E';
 }
 
@@ -345,7 +345,7 @@ const setUpQuery = (url, type) => {
         strategy: 'mobile',
         key: 'AIzaSyBDMfNxNncSxZkXrWob_o7pyqBRFGYt0GI',
     });
-  
+
     return `${api}?${searchParams.toString()}`;
 }
 
@@ -376,7 +376,7 @@ const gauge = (id, score) => {
         color = score >= 75 ? 'green' :
             score >= 25 ? 'yellow' :
                 'red';
-  
+
         //Add Score + Color + Animated
         document.getElementById('resM-'+id).classList.add(color);
         document.getElementById('sM-'+id).innerHTML = score;
@@ -440,14 +440,14 @@ function getValueCookie(cname){
 function changeFont(){
     if (document.body.classList.contains("opendys")){
       document.body.classList.remove("opendys");
-      document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; " + expires + "; Secure; sameSite=None";  
+      document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; " + expires + "; Secure; sameSite=None";
     }
     else{
       document.body.classList.add("opendys");
       document.cookie = "cookie_labanqui.se_font=OpenDys; path=/; " + expires + "; Secure; sameSite=None";
     }
   }
-  
+
   // Change size of the font
   var size = 100;
   function changeSizeFont(param){
@@ -456,10 +456,10 @@ function changeFont(){
     var ht = document.documentElement.classList;
     if (size2 != size && size2 <= 200 && size2 >= 90)
       size = size2;
-      
+
     else
       ht.remove("fz" + size);
-  
+
     if (param == 1 && size < 200){
         if (size < 110){
           size += 10;
@@ -469,7 +469,7 @@ function changeFont(){
         }
         else if(size < 150)
           size += 25;
-  
+
         else if(size < 200)
           size += 50;
       }
@@ -483,7 +483,7 @@ function changeFont(){
         }
         else if (size >= 110 || size < 110){
           size -= 10;
-        } 
+        }
       }
       if (size != 100 && size >= 90 && size <= 200){
         ht.add("fz" + size);
@@ -494,24 +494,73 @@ function changeFont(){
         size = 100;
       }
     }
-  
+
   //delete the classes of the html (those put for the font and the font size)
   function initialVersion(){
-  
+
     if (document.body.classList.contains("opendys")){
        document.body.classList.remove("opendys");
-       document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; + expires +; Secure; sameSite=None"; 
+       document.cookie = "cookie_labanqui.se_font=Poppins, Verdana, sans-serif; path=/; + expires +; Secure; sameSite=None";
     }
     if (document.cookie.match(/cookie_labanqui.se_size/)){
       var size = getValueCookie(/cookie_labanqui.se_size/);
       if (size != 100 && size >= 90 && size <= 200)
         document.documentElement.classList.remove("fz"+size);
-      
+
         document.cookie = "cookie_labanqui.se_size=100; path=/; " + expires + "; Secure; sameSite=None";
-  
+
     }
   }
 
 const score = () => {
   document.querySelector('#score .details').classList.toggle('hidden');
 }
+
+//set buttons for sharing results
+(function(){
+
+  var popupCenter = function(url, title, width, height){
+      var popupWidth = width || 640;
+      var popupHeight = height || 320;
+      var windowLeft = window.screenLeft || window.screenX;
+      var windowTop = window.screenTop || window.screenY;
+      var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+      var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      var popupLeft = windowLeft + windowWidth / 2 - popupWidth / 2 ;
+      var popupTop = windowTop + windowHeight / 2 - popupHeight / 2;
+      var popup = window.open(url, title, 'scrollbars=yes, width=' + popupWidth + ', height=' + popupHeight + ', top=' + popupTop + ', left=' + popupLeft);
+      popup.focus();
+      return true;
+  };
+
+  document.querySelector('.share_twitter').addEventListener('click', function(e){
+      e.preventDefault();
+      var url = window.location.href;
+      var shareUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.title) + "&url=" + encodeURIComponent(url);
+      popupCenter(shareUrl, "Partager sur Twitter");
+  });
+
+  document.querySelector('.share_facebook').addEventListener('click', function(e){
+      e.preventDefault();
+      var url = "https://muchas-glacias.com/score/?id=MjAyMjExMDgxMypodHRwczovL3d3dy5sYWJhbnF1aS5zZS8=";
+      var shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+      popupCenter(shareUrl, "Partager sur facebook");
+  });
+
+  document.querySelector('.share_linkedin').addEventListener('click', function(e){
+      e.preventDefault();
+      var url = "https://muchas-glacias.com/score/?id=MjAyMjExMDgxMypodHRwczovL3d3dy5sYWJhbnF1aS5zZS8=";
+      var shareUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(url);
+      popupCenter(shareUrl, "Partager sur Linkedin");
+  });
+  btnCopy = document.getElementById( 'copy' );
+  btnCopy.addEventListener( 'click', function(){
+	  navigator.clipboard.writeText(window.location.href).then(function() {
+      alert("Le lien de vos résultats a été copié avec succès")
+    }, function() {
+      alert("Il semble qu'il y ait une erreur")
+    });
+	  return false;
+  } );
+
+})();

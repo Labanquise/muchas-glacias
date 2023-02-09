@@ -12,3 +12,8 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+[[deployment.targets]]
+# An arbitrary name for this target.
+name = "S3Deployment"
+URL = "s3://muchas-glacias.com?region=eu-west-3&prefix=/"
+cloudFrontDistributionID = "EF87VKWW0ND5D"

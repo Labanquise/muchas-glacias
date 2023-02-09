@@ -15,5 +15,5 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 [[deployment.targets]]
 # An arbitrary name for this target.
 name = "S3Deployment"
-URL = "s3://muchas-glacias.com?region=eu-west-3&prefix=/"
+URL = "s3://muchas-glacias.com?region=eu-west-1&prefix=/"
 cloudFrontDistributionID = "EF87VKWW0ND5D"

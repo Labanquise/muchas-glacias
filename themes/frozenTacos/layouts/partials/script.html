@@ -10,9 +10,12 @@
         gtag('config', 'UA-186825112-2');
     </script>
 {{ end }}
-
 {{ if eq .Params.mp "Contact" }}
 {{ $js := resources.Get "/js/contact.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.Permalink }}" async></script>
+{{ end }}
+{{ if eq .Params.mp "Score" }}
+{{ $js := resources.Get "/js/score.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $js.Permalink }}" async></script>
 {{ end }}
 {{ $js := resources.Get "/js/main.js" | resources.Minify | resources.Fingerprint }}
